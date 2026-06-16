@@ -3,1103 +3,732 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Por qué contratar a Dani Montero — Propuesta de valor para Biatic</title>
+<title>Daniel Montero × Biatic — El módulo de marketing que le falta a vuestro sistema</title>
+<meta name="description" content="Propuesta de valor de Daniel Montero Díaz para el puesto de Marketing en Biatic. El sistema de inbound que alimenta vuestro proceso comercial.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0D0F14;
-    --bg2: #131720;
-    --card: #1A1E2B;
-    --card2: #222736;
-    --border: rgba(255,255,255,0.07);
-    --text: #F2F2F0;
-    --muted: #8890A4;
-    --accent: #1131F1;
-    --accent2: #1131F1;
-    --gold: #E37D3A;
-    --green: #22C55E;
-    --red: #F43F5E;
-    --font-display: 'Plus Jakarta Sans', sans-serif;
-    --font-body: 'Inter', sans-serif;
+  :root{
+    --ink:#070A12;
+    --ink-2:#0A0E18;
+    --surface:#0F141E;
+    --surface-2:#151B27;
+    --surface-3:#1B2231;
+    --line:rgba(255,255,255,0.07);
+    --line-2:rgba(255,255,255,0.12);
+    --text:#EAEEF8;
+    --muted:#8A93A8;
+    --muted-2:#5A6378;
+
+    --brand:#2C50FF;          /* Biatic electric blue, slightly lifted for dark UI */
+    --brand-core:#1131F1;     /* Biatic corporate blue */
+    --brand-bright:#5A77FF;
+    --brand-glow:rgba(44,80,255,0.35);
+    --brand-soft:rgba(44,80,255,0.10);
+    --brand-line:rgba(44,80,255,0.28);
+
+    --coral:#FF7A4D;          /* revenue / ROI accent, used sparingly */
+    --coral-soft:rgba(255,122,77,0.12);
+    --green:#2BD673;
+    --green-soft:rgba(43,214,115,0.12);
+
+    --fd:'Space Grotesk', sans-serif;
+    --fb:'Inter', sans-serif;
+    --fm:'JetBrains Mono', monospace;
+
+    --maxw:1140px;
   }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
 
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-body);
-    line-height: 1.6;
-    overflow-x: hidden;
+  body{
+    background:var(--ink);
+    color:var(--text);
+    font-family:var(--fb);
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
   }
 
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(13,15,20,0.88);
-    backdrop-filter: blur(18px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  /* blueprint grid backdrop */
+  body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+    background-size:48px 48px;
+    mask-image:radial-gradient(ellipse 100% 80% at 50% 0%, #000 40%, transparent 100%);
+    -webkit-mask-image:radial-gradient(ellipse 100% 80% at 50% 0%, #000 40%, transparent 100%);
+    pointer-events:none;
+    z-index:0;
   }
 
-  .nav-brand {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 0.85rem;
-    letter-spacing: 0.04em;
-    color: var(--accent);
-    text-transform: uppercase;
+  ::selection{background:var(--brand);color:#fff;}
+
+  /* ── SCROLL PROGRESS ── */
+  #progress{
+    position:fixed;top:0;left:0;height:2px;width:0%;
+    background:linear-gradient(90deg,var(--brand),var(--brand-bright));
+    z-index:200;transition:width .1s linear;
+    box-shadow:0 0 12px var(--brand-glow);
   }
 
-  .nav-links {
-    display: flex;
-    gap: 0.25rem;
-    list-style: none;
+  /* ── SYSTEM BAR / NAV ── */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:150;
+    background:rgba(7,10,18,0.72);
+    backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--line);
+    height:58px;padding:0 1.4rem;
+    display:flex;align-items:center;justify-content:space-between;
   }
+  .nav-brand{
+    display:flex;align-items:center;gap:.6rem;
+    font-family:var(--fm);font-size:.74rem;font-weight:500;
+    letter-spacing:.02em;color:var(--text);white-space:nowrap;
+  }
+  .nav-brand b{color:var(--brand-bright);font-weight:700;}
+  .nav-brand .sep{color:var(--muted-2);}
+  .status-dot{
+    width:7px;height:7px;border-radius:50%;background:var(--green);
+    box-shadow:0 0 0 0 rgba(43,214,115,.6);
+    animation:pulse 2.4s infinite;flex-shrink:0;
+  }
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(43,214,115,.5);}70%{box-shadow:0 0 0 6px rgba(43,214,115,0);}100%{box-shadow:0 0 0 0 rgba(43,214,115,0);}}
 
-  .nav-links a {
-    display: block;
-    padding: 0.3rem 0.65rem;
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    border-radius: 6px;
-    transition: color 0.2s, background 0.2s;
+  .nav-links{display:flex;gap:.1rem;list-style:none;}
+  .nav-links a{
+    display:block;padding:.35rem .6rem;color:var(--muted);
+    text-decoration:none;font-family:var(--fm);font-size:.7rem;
+    font-weight:400;letter-spacing:.01em;border-radius:6px;
+    transition:color .2s,background .2s;
   }
+  .nav-links a:hover,.nav-links a.active{color:var(--text);background:var(--surface-2);}
+  .nav-cta{
+    font-family:var(--fm);font-size:.7rem;font-weight:500;
+    color:var(--brand-bright);border:1px solid var(--brand-line);
+    padding:.35rem .7rem;border-radius:7px;text-decoration:none;
+    transition:background .2s;white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--brand-soft);}
 
-  .nav-links a:hover, .nav-links a.active {
-    color: var(--text);
-    background: var(--card2);
-  }
+  /* ── LAYOUT ── */
+  section{position:relative;z-index:1;padding:7rem 1.6rem 5.5rem;border-bottom:1px solid var(--line);}
+  .container{width:100%;max-width:var(--maxw);margin:0 auto;}
 
-  /* ── SECTIONS ── */
-  section {
-    min-height: 100vh;
-    padding: 8rem 2rem 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 1px solid var(--border);
+  /* ── MONO EYEBROW ── */
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:.6rem;
+    font-family:var(--fm);font-size:.72rem;font-weight:500;
+    letter-spacing:.06em;color:var(--brand-bright);
+    margin-bottom:1.4rem;text-transform:uppercase;
   }
+  .eyebrow .idx{color:var(--muted-2);}
+  .eyebrow .bar{display:block;width:18px;height:1px;background:var(--brand-line);}
 
-  .container {
-    width: 100%;
-    max-width: 1080px;
-    margin: 0 auto;
+  .section-title{
+    font-family:var(--fd);font-size:clamp(1.9rem,3.6vw,2.9rem);
+    font-weight:600;letter-spacing:-.02em;line-height:1.12;margin-bottom:1.1rem;
   }
+  .section-title em{color:var(--brand-bright);font-style:normal;}
+  .section-desc{color:var(--muted);font-size:1.02rem;max-width:600px;line-height:1.7;margin-bottom:3rem;}
+  .section-desc strong{color:var(--text);font-weight:600;}
 
-  /* ── EYEBROW ── */
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.25rem;
-  }
-
-  .eyebrow::before {
-    content: '';
-    display: block;
-    width: 24px;
-    height: 2px;
-    background: var(--accent);
-    flex-shrink: 0;
-  }
+  /* mono label helper */
+  .mlabel{font-family:var(--fm);font-size:.68rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
 
   /* ── HERO ── */
-  #hero {
-    background: radial-gradient(ellipse at 60% 40%, rgba(17,49,241,0.1) 0%, transparent 65%),
-                radial-gradient(ellipse at 20% 80%, rgba(227,125,58,0.06) 0%, transparent 50%);
-    padding-top: 10rem;
-    align-items: flex-start;
+  #hero{
+    padding-top:9rem;border-bottom:1px solid var(--line);
+    background:
+      radial-gradient(ellipse 70% 60% at 75% 25%, rgba(44,80,255,0.14) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 10% 90%, rgba(255,122,77,0.05) 0%, transparent 55%);
   }
-
-  .hero-label {
-    display: inline-block;
-    background: rgba(17,49,241,0.1);
-    border: 1px solid rgba(17,49,241,0.25);
-    color: var(--accent);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.35rem 0.9rem;
-    border-radius: 100px;
-    margin-bottom: 2rem;
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;align-items:center;}
+  .hero-tag{
+    display:inline-flex;align-items:center;gap:.5rem;
+    font-family:var(--fm);font-size:.7rem;font-weight:500;letter-spacing:.04em;
+    color:var(--brand-bright);background:var(--brand-soft);
+    border:1px solid var(--brand-line);padding:.4rem .8rem;border-radius:100px;
+    margin-bottom:1.8rem;text-transform:uppercase;
   }
-
-  .hero-title {
-    font-family: var(--font-display);
-    font-size: clamp(2.4rem, 5vw, 4.2rem);
-    font-weight: 800;
-    line-height: 1.08;
-    letter-spacing: -0.03em;
-    margin-bottom: 1.5rem;
-    max-width: 860px;
+  .hero-title{
+    font-family:var(--fd);font-size:clamp(2.3rem,4.6vw,3.9rem);
+    font-weight:600;line-height:1.06;letter-spacing:-.03em;margin-bottom:1.4rem;
   }
+  .hero-title em{color:var(--brand-bright);font-style:normal;position:relative;}
+  .hero-sub{font-size:1.04rem;color:var(--muted);max-width:520px;line-height:1.7;margin-bottom:1rem;}
+  .hero-sub.lead{color:var(--text);font-weight:500;margin-top:1.4rem;}
+  .hero-sub.lead b{color:var(--brand-bright);font-weight:600;}
 
-  .hero-title span {
-    color: var(--accent);
+  .hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:2.2rem;}
+  .btn{
+    font-family:var(--fm);font-size:.78rem;font-weight:500;letter-spacing:.01em;
+    padding:.75rem 1.2rem;border-radius:9px;text-decoration:none;
+    display:inline-flex;align-items:center;gap:.5rem;transition:.2s;cursor:pointer;border:none;
   }
+  .btn-primary{background:var(--brand);color:#fff;box-shadow:0 6px 24px -8px var(--brand-glow);}
+  .btn-primary:hover{background:var(--brand-bright);transform:translateY(-1px);}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line-2);}
+  .btn-ghost:hover{border-color:var(--brand-line);color:var(--brand-bright);}
 
-  .hero-sub {
-    font-size: 1.05rem;
-    color: var(--muted);
-    max-width: 560px;
-    line-height: 1.7;
-    margin-bottom: 3rem;
+  /* hero console panel */
+  .console{
+    background:linear-gradient(180deg,var(--surface-2),var(--surface));
+    border:1px solid var(--line-2);border-radius:16px;overflow:hidden;
+    box-shadow:0 30px 80px -30px rgba(0,0,0,.7), 0 0 0 1px rgba(44,80,255,.06);
   }
-
-  .hero-meta {
-    display: flex;
-    gap: 2.5rem;
-    flex-wrap: wrap;
+  .console-bar{
+    display:flex;align-items:center;gap:.5rem;padding:.7rem 1rem;
+    border-bottom:1px solid var(--line);background:var(--ink-2);
   }
-
-  .hero-meta-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
+  .console-bar .dots{display:flex;gap:.35rem;}
+  .console-bar .dots i{width:9px;height:9px;border-radius:50%;display:block;}
+  .console-bar .dots i:nth-child(1){background:#FF5F57;}
+  .console-bar .dots i:nth-child(2){background:#FEBC2E;}
+  .console-bar .dots i:nth-child(3){background:#28C840;}
+  .console-bar .ttl{font-family:var(--fm);font-size:.68rem;color:var(--muted);margin-left:.4rem;}
+  .console-body{padding:1.4rem;}
+  .cline{
+    display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    font-family:var(--fm);font-size:.78rem;padding:.65rem 0;border-bottom:1px dashed var(--line);
   }
-
-  .hero-meta-item .val {
-    font-family: var(--font-display);
-    font-size: 1.9rem;
-    font-weight: 800;
-    color: var(--text);
-    letter-spacing: -0.03em;
+  .cline:last-child{border-bottom:none;}
+  .cline .k{color:var(--muted);}
+  .cline .v{color:var(--text);font-weight:500;display:flex;align-items:center;gap:.5rem;}
+  .pill{font-family:var(--fm);font-size:.64rem;font-weight:700;letter-spacing:.04em;padding:.2rem .5rem;border-radius:5px;text-transform:uppercase;}
+  .pill.ok{background:var(--green-soft);color:var(--green);}
+  .pill.warn{background:var(--coral-soft);color:var(--coral);}
+  .pill.off{background:rgba(255,255,255,.06);color:var(--muted);}
+  .console-foot{
+    background:var(--brand-soft);border-top:1px solid var(--brand-line);
+    padding:1rem 1.4rem;font-family:var(--fm);font-size:.74rem;color:var(--brand-bright);
+    display:flex;align-items:center;gap:.6rem;
   }
+  .blink{width:8px;height:14px;background:var(--brand-bright);display:inline-block;animation:blink 1.1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0;}}
 
-  .hero-meta-item .val.accent { color: var(--accent); }
-  .hero-meta-item .val.gold { color: var(--gold); }
+  /* hero metrics strip */
+  .hero-metrics{display:flex;gap:2.4rem;flex-wrap:wrap;margin-top:3rem;padding-top:2.2rem;border-top:1px solid var(--line);}
+  .hm{display:flex;flex-direction:column;gap:.25rem;}
+  .hm .v{font-family:var(--fd);font-size:1.7rem;font-weight:600;letter-spacing:-.02em;}
+  .hm .v.coral{color:var(--coral);} .hm .v.brand{color:var(--brand-bright);}
+  .hm .l{font-family:var(--fm);font-size:.66rem;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;}
 
-  .hero-meta-item .lbl {
-    font-size: 0.72rem;
-    color: var(--muted);
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+  /* ── GENERIC CARD GRID ── */
+  .grid{display:grid;gap:1px;background:var(--line);border-radius:14px;overflow:hidden;border:1px solid var(--line);}
+  .grid-3{grid-template-columns:repeat(3,1fr);}
+  .grid-2{grid-template-columns:repeat(2,1fr);}
+  .cell{background:var(--surface);padding:1.6rem;transition:background .2s;}
+  .cell:hover{background:var(--surface-2);}
+  .cell-ic{width:38px;height:38px;border-radius:9px;background:var(--brand-soft);border:1px solid var(--brand-line);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;color:var(--brand-bright);}
+  .cell-ic svg{width:18px;height:18px;}
+  .cell-t{font-family:var(--fd);font-size:.98rem;font-weight:600;margin-bottom:.5rem;line-height:1.3;}
+  .cell-x{font-size:.85rem;color:var(--muted);line-height:1.65;}
+  .cell-x b{color:var(--coral);font-weight:600;}
+
+  /* ── BIATIC CONTEXT chips ── */
+  .logos{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2.4rem;}
+  .logo-chip{
+    font-family:var(--fm);font-size:.74rem;color:var(--muted);
+    background:var(--surface);border:1px solid var(--line);
+    padding:.45rem .85rem;border-radius:8px;transition:.2s;
   }
+  .logo-chip:hover{color:var(--text);border-color:var(--brand-line);}
+  .method{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:1.5rem;}
+  .mstep{background:var(--surface);padding:1.6rem;position:relative;}
+  .mstep .n{font-family:var(--fm);font-size:.72rem;color:var(--brand-bright);font-weight:700;margin-bottom:.6rem;}
+  .mstep h4{font-family:var(--fd);font-size:1rem;font-weight:600;margin-bottom:.4rem;}
+  .mstep p{font-size:.82rem;color:var(--muted);line-height:1.6;}
+  .mstep .arrow{position:absolute;right:-12px;top:50%;transform:translateY(-50%);z-index:2;color:var(--brand-bright);background:var(--ink);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:.8rem;}
 
-  /* ── SECTION TITLES ── */
-  .section-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-    font-weight: 800;
-    letter-spacing: -0.025em;
-    line-height: 1.15;
-    margin-bottom: 1rem;
+  /* ── PARADOX ── */
+  .paradox-box{
+    border:1px solid var(--brand-line);
+    background:linear-gradient(135deg,var(--brand-soft) 0%,transparent 55%);
+    border-radius:18px;padding:2.6rem;margin-bottom:2.2rem;position:relative;overflow:hidden;
   }
+  .paradox-box::after{content:'{ }';position:absolute;right:1.4rem;bottom:.6rem;font-family:var(--fm);font-size:4rem;color:rgba(44,80,255,.06);font-weight:700;}
+  .paradox-quote{font-family:var(--fd);font-size:clamp(1.2rem,2.4vw,1.7rem);font-weight:500;line-height:1.4;margin-bottom:1rem;position:relative;z-index:1;}
+  .paradox-quote em{color:var(--brand-bright);font-style:normal;}
+  .paradox-note{font-size:.86rem;color:var(--muted);position:relative;z-index:1;}
 
-  .section-desc {
-    color: var(--muted);
-    font-size: 1rem;
-    max-width: 560px;
-    line-height: 1.75;
-    margin-bottom: 3rem;
-  }
+  /* funnel panel */
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.7rem 1.9rem;margin-bottom:2rem;}
+  .panel-h{font-family:var(--fm);font-size:.68rem;font-weight:500;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin-bottom:1.3rem;}
+  .flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;}
+  .node{flex:1;min-width:140px;padding:1.1rem 1.2rem;text-align:center;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;}
+  .node.b{background:var(--brand-soft);border-color:var(--brand-line);}
+  .node.c{background:var(--coral-soft);border-color:rgba(255,122,77,.25);}
+  .node .nt{font-family:var(--fd);font-size:.86rem;font-weight:600;margin-bottom:.3rem;}
+  .node .nx{font-size:.72rem;color:var(--muted);line-height:1.5;}
+  .conn{display:flex;align-items:center;justify-content:center;padding:0 .5rem;color:var(--brand-bright);font-family:var(--fm);font-weight:700;align-self:center;}
+  .panel-foot{background:var(--ink-2);border-radius:10px;padding:1rem 1.2rem;font-size:.84rem;color:var(--muted);line-height:1.6;margin-top:1.2rem;}
+  .panel-foot strong{color:var(--text);} .panel-foot .hi{color:var(--coral);font-weight:600;}
 
-  /* ── CARDS ── */
-  .cards {
-    display: grid;
-    gap: 1px;
-    background: var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .cards-3 { grid-template-columns: repeat(3, 1fr); }
-  .cards-2 { grid-template-columns: repeat(2, 1fr); }
-
-  .card {
-    background: var(--card);
-    padding: 1.75rem;
-    transition: background 0.2s;
-  }
-
-  .card:hover { background: var(--card2); }
-
-  .card-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    background: rgba(17,49,241,0.12);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-  }
-
-  .card-title {
-    font-family: var(--font-display);
-    font-size: 0.95rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-  }
-
-  .card-text {
-    font-size: 0.85rem;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  /* ── PARADOX SECTION ── */
-  #paradox .paradox-box {
-    border: 1px solid rgba(17,49,241,0.2);
-    background: linear-gradient(135deg, rgba(17,49,241,0.06) 0%, transparent 60%);
-    border-radius: 20px;
-    padding: 3rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .paradox-quote {
-    font-family: var(--font-display);
-    font-size: clamp(1.2rem, 2.5vw, 1.75rem);
-    font-weight: 700;
-    line-height: 1.4;
-    color: var(--text);
-    margin-bottom: 1rem;
-  }
-
-  .paradox-quote em {
-    color: var(--accent);
-    font-style: normal;
-  }
-
-  /* ── REVENUE CHART ── */
-  #oportunidad .rev-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-radius: 16px;
-    overflow: hidden;
-    margin-bottom: 2rem;
-  }
-
-  .rev-table th {
-    background: var(--card2);
-    color: var(--muted);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 1rem 1.25rem;
-    text-align: left;
-  }
-
-  .rev-table td {
-    background: var(--card);
-    border-top: 1px solid var(--border);
-    padding: 1.1rem 1.25rem;
-    font-size: 0.9rem;
-  }
-
-  .rev-table tr:hover td { background: var(--card2); }
-
-  .rev-table .highlight td {
-    background: rgba(17,49,241,0.08);
-  }
-
-  .rev-table .current td {
-    color: var(--muted);
-  }
-
-  .tag {
-    display: inline-block;
-    padding: 0.2rem 0.6rem;
-    border-radius: 6px;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-  }
-
-  .tag-accent { background: rgba(17,49,241,0.15); color: var(--accent); }
-  .tag-gold { background: rgba(227,125,58,0.15); color: var(--gold); }
-  .tag-muted { background: var(--card2); color: var(--muted); }
-  .tag-green { background: rgba(34,197,94,0.15); color: var(--green); }
-
-  .revenue-big {
-    font-family: var(--font-display);
-    font-size: 1.4rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-  }
+  /* ── TABLES ── */
+  .tbl-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--line);margin-bottom:1.4rem;}
+  table.tbl{width:100%;border-collapse:separate;border-spacing:0;min-width:560px;}
+  .tbl th{background:var(--surface-2);font-family:var(--fm);color:var(--muted);font-size:.66rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:.9rem 1.1rem;text-align:left;white-space:nowrap;}
+  .tbl td{background:var(--surface);border-top:1px solid var(--line);padding:1rem 1.1rem;font-size:.88rem;vertical-align:top;}
+  .tbl tr:hover td{background:var(--surface-2);}
+  .tbl tr.hl td{background:var(--brand-soft);}
+  .tbl tr.total td{background:rgba(44,80,255,.05);font-weight:600;}
+  .tbl .sub{color:var(--muted);font-size:.78rem;font-weight:400;}
+  .big{font-family:var(--fd);font-size:1.3rem;font-weight:700;letter-spacing:-.02em;}
+  .tag{display:inline-block;font-family:var(--fm);padding:.22rem .55rem;border-radius:6px;font-size:.66rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;white-space:nowrap;}
+  .tag.b{background:var(--brand-soft);color:var(--brand-bright);}
+  .tag.c{background:var(--coral-soft);color:var(--coral);}
+  .tag.g{background:var(--green-soft);color:var(--green);}
+  .tag.m{background:rgba(255,255,255,.06);color:var(--muted);}
+  .note{font-size:.74rem;color:var(--muted-2);line-height:1.55;}
 
   /* ── BAR CHART ── */
-  .chart-wrap {
-    background: var(--card);
-    border-radius: 16px;
-    padding: 2rem;
-    border: 1px solid var(--border);
-  }
+  .chart{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:2rem;}
+  .chart-h{font-family:var(--fm);font-size:.7rem;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:1.6rem;}
+  .bars{display:flex;align-items:flex-end;gap:1.4rem;height:200px;border-bottom:1px solid var(--line);position:relative;}
+  .bargrp{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;}
+  .bval{font-family:var(--fd);font-size:.8rem;font-weight:700;margin-bottom:.4rem;}
+  .bar{width:100%;max-width:120px;border-radius:7px 7px 0 0;height:0;transition:height 1.1s cubic-bezier(.16,1,.3,1);position:relative;}
+  .bar.b0{background:var(--surface-3);}
+  .bar.b1{background:linear-gradient(180deg,rgba(44,80,255,.55),rgba(44,80,255,.28));}
+  .bar.b2{background:linear-gradient(180deg,var(--brand),var(--brand-core));box-shadow:0 0 30px -8px var(--brand-glow);}
+  .blbl{font-family:var(--fm);font-size:.66rem;color:var(--muted);text-align:center;margin-top:.7rem;line-height:1.4;}
+  .blbl b{color:var(--text);display:block;font-weight:500;}
 
-  .chart-title {
-    font-family: var(--font-display);
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--muted);
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-  }
+  /* ── PILLARS ── */
+  .pillar{display:grid;grid-template-columns:300px 1fr;background:var(--line);gap:1px;}
+  .pillar:first-child{border-radius:16px 16px 0 0;overflow:hidden;}
+  .pillar:last-child{border-radius:0 0 16px 16px;overflow:hidden;}
+  .pillar-l{background:var(--surface);padding:1.8rem;}
+  .pillar-l .pn{font-family:var(--fm);font-size:.72rem;font-weight:700;color:var(--brand-bright);margin-bottom:.7rem;}
+  .pillar-l .pname{font-family:var(--fd);font-size:1.05rem;font-weight:600;line-height:1.3;}
+  .pillar-r{background:var(--surface);padding:1.8rem;}
+  .pillar-r p{font-size:.88rem;color:var(--muted);line-height:1.7;}
+  .pillar-r ul{list-style:none;margin-top:.9rem;display:flex;flex-direction:column;gap:.45rem;}
+  .pillar-r li{font-size:.82rem;color:var(--muted);padding-left:1.3rem;position:relative;line-height:1.5;}
+  .pillar-r li::before{content:'→';position:absolute;left:0;color:var(--brand-bright);font-family:var(--fm);font-size:.78rem;}
 
-  .bar-chart {
-    display: flex;
-    align-items: flex-end;
-    gap: 1.5rem;
-    height: 180px;
-    padding-bottom: 2.5rem;
-    position: relative;
-    border-bottom: 1px solid var(--border);
-  }
+  /* ── TOOLS ── */
+  .tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;}
+  .tool{background:var(--surface);padding:1.5rem;transition:background .2s;}
+  .tool:hover{background:var(--surface-2);}
+  .tool-ic{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:.9rem;color:var(--brand-bright);background:var(--brand-soft);border:1px solid var(--brand-line);}
+  .tool-ic svg{width:17px;height:17px;}
+  .tool-n{font-family:var(--fd);font-size:.9rem;font-weight:600;margin-bottom:.35rem;}
+  .tool-x{font-size:.78rem;color:var(--muted);line-height:1.55;}
 
-  .bar-group {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    height: 100%;
-    gap: 0.5rem;
-  }
+  /* ── ROI ── */
+  .roi-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:1.5rem;}
+  .roi-card{background:var(--surface);border:1px solid var(--brand-line);border-radius:18px;padding:2.2rem;}
+  .roi-card h4{font-family:var(--fd);font-weight:600;font-size:1.05rem;margin-bottom:.4rem;}
+  .roi-card .desc{font-size:.82rem;color:var(--muted);margin-bottom:1.6rem;}
+  .slider-label{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.8rem;font-size:.84rem;color:var(--muted);}
+  .slider-label strong{font-family:var(--fd);font-size:1.2rem;color:var(--brand-bright);font-weight:700;}
+  input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;background:var(--surface-3);outline:none;cursor:pointer;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 5px var(--brand-soft);cursor:pointer;transition:box-shadow .2s;}
+  input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 0 8px var(--brand-soft);}
+  input[type=range]::-moz-range-thumb{width:20px;height:20px;border:none;border-radius:50%;background:var(--brand);cursor:pointer;}
+  .range-ends{display:flex;justify-content:space-between;font-family:var(--fm);font-size:.66rem;color:var(--muted-2);margin-top:.5rem;}
+  .roi-out{background:var(--ink-2);border-radius:12px;padding:1.5rem;margin-top:1.6rem;display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;}
+  .roi-m .l{font-family:var(--fm);font-size:.64rem;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.4rem;}
+  .roi-m .v{font-family:var(--fd);font-size:1.5rem;font-weight:700;letter-spacing:-.02em;}
+  .roi-m .v.g{color:var(--green);} .roi-m .v.b{color:var(--brand-bright);} .roi-m .v.m{color:var(--muted);}
+  .roi-foot{font-size:.78rem;color:var(--muted);margin-top:1.3rem;border-top:1px solid var(--line);padding-top:1rem;line-height:1.6;}
+  .roi-foot strong{color:var(--text);}
+  .roi-side{display:flex;flex-direction:column;gap:1rem;}
+  .stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.5rem;}
+  .stat .sv{font-family:var(--fd);font-size:1.7rem;font-weight:700;letter-spacing:-.02em;line-height:1;margin-bottom:.5rem;}
+  .stat .sv.c{color:var(--coral);} .stat .sv.b{color:var(--brand-bright);}
+  .stat .sl{font-size:.78rem;color:var(--muted);line-height:1.5;}
+  .stat.accent{background:var(--brand-soft);border-color:var(--brand-line);}
+  .stat.accent .st{font-family:var(--fd);font-size:.95rem;font-weight:600;margin-bottom:.5rem;}
 
-  .bar {
-    width: 100%;
-    border-radius: 6px 6px 0 0;
-    transition: height 0.8s cubic-bezier(0.16,1,0.3,1);
-    position: relative;
-  }
+  /* compare */
+  .compare{background:var(--brand-soft);border:1px solid var(--brand-line);border-radius:16px;padding:1.8rem 2rem;margin-top:2rem;}
+  .compare-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+  .compare .cl{font-family:var(--fm);font-size:.66rem;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.6rem;}
+  .compare .cv{font-family:var(--fd);font-size:1.5rem;font-weight:700;letter-spacing:-.02em;}
+  .compare .cv .u{font-size:.85rem;font-weight:500;color:var(--muted);}
+  .compare .cx{font-size:.74rem;color:var(--muted);margin-top:.4rem;line-height:1.5;}
 
-  .bar.current { background: var(--card2); }
-  .bar.s1 { background: linear-gradient(180deg, rgba(17,49,241,0.5) 0%, rgba(17,49,241,0.3) 100%); }
-  .bar.s2 { background: linear-gradient(180deg, var(--accent) 0%, var(--accent2) 100%); }
-  .bar.s3 { background: linear-gradient(180deg, var(--gold) 0%, #C45E1A 100%); }
+  /* ── TIMELINE ── */
+  .tl-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
+  .timeline{position:relative;padding-left:2rem;}
+  .timeline::before{content:'';position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:linear-gradient(180deg,var(--brand) 0%,var(--surface-3) 100%);}
+  .phase{position:relative;margin-bottom:2.4rem;}
+  .phase::before{content:'';position:absolute;left:-2rem;top:5px;width:11px;height:11px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 4px var(--brand-soft);}
+  .phase-l{font-family:var(--fm);font-size:.68rem;font-weight:500;color:var(--brand-bright);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.4rem;}
+  .phase-t{font-family:var(--fd);font-size:1.05rem;font-weight:600;margin-bottom:.8rem;}
+  .phase-i{display:flex;align-items:flex-start;gap:.6rem;font-size:.85rem;color:var(--muted);line-height:1.5;margin-bottom:.45rem;}
+  .phase-i::before{content:'›';color:var(--brand-bright);font-family:var(--fm);font-weight:700;flex-shrink:0;}
 
-  .bar-val {
-    font-family: var(--font-display);
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--text);
-    white-space: nowrap;
-    margin-bottom: 0.25rem;
-  }
+  .deliver{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.8rem;}
+  .deliver-h{font-family:var(--fm);font-size:.68rem;font-weight:500;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:1.3rem;}
+  .drow{margin-bottom:1rem;}
+  .drow .dt{display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem;font-size:.82rem;}
+  .drow .dt .ds{font-family:var(--fm);font-size:.64rem;font-weight:700;}
+  .drow .dt .ds.ok{color:var(--green);} .drow .dt .ds.prog{color:var(--coral);}
+  .pbar{height:6px;background:var(--surface-3);border-radius:3px;overflow:hidden;}
+  .pfill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--brand-core),var(--brand-bright));width:0;transition:width 1.2s cubic-bezier(.16,1,.3,1);}
+  .principle{background:var(--brand-soft);border:1px solid var(--brand-line);border-radius:14px;padding:1.5rem;margin-top:1rem;}
+  .principle .pl{font-family:var(--fm);font-size:.64rem;font-weight:500;color:var(--brand-bright);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.7rem;}
+  .principle .pq{font-family:var(--fd);font-size:1rem;font-weight:600;line-height:1.5;}
+  .principle .px{font-size:.78rem;color:var(--muted);margin-top:.7rem;}
 
-  .bar-lbl {
-    font-size: 0.68rem;
-    color: var(--muted);
-    font-weight: 500;
-    margin-top: 0.5rem;
-    text-align: center;
-  }
-
-  /* ── ROI CALCULATOR ── */
-  #roi .roi-widget {
-    background: var(--card);
-    border: 1px solid rgba(17,49,241,0.2);
-    border-radius: 20px;
-    padding: 2.5rem;
-    max-width: 640px;
-  }
-
-  .roi-widget .slider-wrap {
-    margin: 1.5rem 0;
-  }
-
-  .slider-label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.75rem;
-    font-size: 0.85rem;
-  }
-
-  .slider-label span { color: var(--muted); }
-  .slider-label strong {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--accent);
-  }
-
-  input[type=range] {
-    width: 100%;
-    -webkit-appearance: none;
-    height: 4px;
-    border-radius: 2px;
-    background: var(--card2);
-    outline: none;
-    cursor: pointer;
-  }
-
-  input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 0 4px rgba(17,49,241,0.2);
-    cursor: pointer;
-    transition: box-shadow 0.2s;
-  }
-
-  input[type=range]:hover::-webkit-slider-thumb {
-    box-shadow: 0 0 0 6px rgba(17,49,241,0.3);
-  }
-
-  .roi-result {
-    background: var(--bg2);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-top: 1.5rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
-  }
-
-  .roi-metric .lbl {
-    font-size: 0.72rem;
-    color: var(--muted);
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: 0.4rem;
-  }
-
-  .roi-metric .val {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-  }
-
-  .roi-metric .val.green { color: var(--green); }
-  .roi-metric .val.accent { color: var(--accent); }
-
-  .roi-note {
-    font-size: 0.78rem;
-    color: var(--muted);
-    margin-top: 1.25rem;
-    line-height: 1.6;
-    border-top: 1px solid var(--border);
-    padding-top: 1rem;
-  }
-
-  /* ── 90 DAYS TIMELINE ── */
-  #noventa .timeline {
-    position: relative;
-    padding-left: 2rem;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 8px;
-    bottom: 8px;
-    width: 2px;
-    background: linear-gradient(180deg, var(--accent) 0%, var(--card2) 100%);
-  }
-
-  .timeline-phase {
-    position: relative;
-    margin-bottom: 2.5rem;
-  }
-
-  .timeline-phase::before {
-    content: '';
-    position: absolute;
-    left: -2.45rem;
-    top: 8px;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 0 4px rgba(17,49,241,0.15);
-  }
-
-  .phase-label {
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: var(--accent);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 0.4rem;
-  }
-
-  .phase-title {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-  }
-
-  .phase-items {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
-  .phase-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.6rem;
-    font-size: 0.875rem;
-    color: var(--muted);
-  }
-
-  .phase-item::before {
-    content: '→';
-    color: var(--accent);
-    flex-shrink: 0;
-    margin-top: 0.05rem;
-    font-size: 0.8rem;
-  }
-
-  /* ── TOOLS GRID ── */
-  .tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .tool-card {
-    background: var(--card);
-    padding: 1.5rem;
-    transition: background 0.2s;
-  }
-
-  .tool-card:hover { background: var(--card2); }
-
-  .tool-name {
-    font-family: var(--font-display);
-    font-size: 0.875rem;
-    font-weight: 700;
-    margin-bottom: 0.35rem;
-    color: var(--text);
-  }
-
-  .tool-use {
-    font-size: 0.78rem;
-    color: var(--muted);
-    line-height: 1.55;
-  }
-
-  .tool-icon {
-    font-size: 1.3rem;
-    margin-bottom: 0.75rem;
-  }
-
-  /* ── ROLE PILLARS ── */
-  .pillar {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 0;
-    background: var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    margin-bottom: 1px;
-  }
-
-  .pillar-label {
-    background: var(--card);
-    padding: 1.75rem;
-    border-right: 1px solid var(--border);
-  }
-
-  .pillar-label .num {
-    font-family: var(--font-display);
-    font-size: 2rem;
-    font-weight: 800;
-    color: rgba(17,49,241,0.2);
-    line-height: 1;
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.04em;
-  }
-
-  .pillar-label .name {
-    font-family: var(--font-display);
-    font-size: 0.95rem;
-    font-weight: 700;
-    line-height: 1.3;
-  }
-
-  .pillar-content {
-    background: var(--card);
-    padding: 1.75rem;
-  }
-
-  .pillar-content p {
-    font-size: 0.875rem;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  .pillar-content ul {
-    list-style: none;
-    margin-top: 0.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-  }
-
-  .pillar-content ul li {
-    font-size: 0.82rem;
-    color: var(--muted);
-    padding-left: 1.1rem;
-    position: relative;
-  }
-
-  .pillar-content ul li::before {
-    content: '·';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-    font-size: 1rem;
-    line-height: 1.4;
-  }
+  /* ── COMPETENCIES ── */
+  .skills{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:2rem;margin-bottom:2rem;}
+  .skills-h{font-family:var(--fm);font-size:.7rem;font-weight:500;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:1.6rem;}
+  .skill-row{display:grid;grid-template-columns:220px 1fr;gap:1.4rem;align-items:start;padding:1.1rem 0;border-top:1px solid var(--line);}
+  .skill-row:first-of-type{border-top:none;padding-top:0;}
+  .skill-row .sk-n{font-family:var(--fd);font-size:.88rem;font-weight:600;}
+  .skill-row .sk-tool{font-family:var(--fm);color:var(--brand-bright);font-weight:500;font-size:.68rem;display:block;margin-top:.3rem;}
+  .skill-row .sk-x{font-size:.82rem;color:var(--muted);line-height:1.6;}
 
   /* ── CLOSING ── */
-  #cierre {
-    background: radial-gradient(ellipse at 50% 30%, rgba(17,49,241,0.1) 0%, transparent 60%);
-  }
+  #cierre{background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(44,80,255,.12) 0%,transparent 60%);text-align:center;}
+  .closing{max-width:760px;margin:0 auto;}
+  .closing-title{font-family:var(--fd);font-size:clamp(2rem,4.2vw,3.2rem);font-weight:600;letter-spacing:-.03em;line-height:1.1;margin-bottom:1.4rem;}
+  .closing-title em{color:var(--brand-bright);font-style:normal;}
+  .closing-desc{color:var(--muted);font-size:1.02rem;line-height:1.75;margin-bottom:2.4rem;}
+  .ctags{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;margin-bottom:3rem;}
+  .ctag{font-family:var(--fm);background:var(--surface);border:1px solid var(--line);border-radius:100px;padding:.45rem 1rem;font-size:.74rem;color:var(--text);display:flex;align-items:center;gap:.45rem;}
+  .ctag .d{width:5px;height:5px;border-radius:50%;background:var(--brand-bright);}
+  .hybrid{background:var(--surface);border:1px solid var(--brand-line);border-radius:18px;padding:2rem;margin-bottom:2.4rem;text-align:left;}
+  .hybrid h4{font-family:var(--fd);font-size:1.15rem;font-weight:600;letter-spacing:-.01em;margin-bottom:1rem;}
+  .hybrid p{font-size:.88rem;color:var(--muted);line-height:1.75;margin-bottom:.85rem;}
+  .hybrid p:last-child{margin-bottom:0;}
+  .hybrid b{color:var(--text);}
+  .contact{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:2rem 2.4rem;display:inline-flex;flex-direction:column;align-items:center;gap:.4rem;}
+  .avatar{width:50px;height:50px;border-radius:13px;background:linear-gradient(135deg,var(--brand),var(--brand-core));display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:700;font-size:1.2rem;color:#fff;margin-bottom:.5rem;box-shadow:0 8px 24px -8px var(--brand-glow);}
+  .contact .cn{font-family:var(--fd);font-size:1.3rem;font-weight:600;letter-spacing:-.01em;}
+  .contact .cr{font-family:var(--fm);font-size:.74rem;color:var(--brand-bright);}
 
-  .closing-box {
-    text-align: center;
-    max-width: 720px;
-    margin: 0 auto;
-  }
-
-  .closing-title {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-  }
-
-  .closing-title span { color: var(--accent); }
-
-  .closing-desc {
-    color: var(--muted);
-    font-size: 1rem;
-    line-height: 1.75;
-    margin-bottom: 2.5rem;
-  }
-
-  .closing-tags {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 3rem;
-  }
-
-  .ctag {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    padding: 0.45rem 1.1rem;
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: var(--text);
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-
-  .ctag .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    flex-shrink: 0;
-  }
-
-  .contact-block {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2rem;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.35rem;
-  }
-
-  .contact-name {
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-  }
-
-  .contact-role {
-    font-size: 0.82rem;
-    color: var(--accent);
-    font-weight: 500;
-  }
-
-  .contact-langs {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-  }
-
-  /* ── DIVIDER ── */
-  .div-line {
-    width: 40px;
-    height: 2px;
-    background: var(--accent);
-    margin: 1.5rem 0;
-  }
-
-  /* ── STAT CALLOUT ── */
-  .stat-callout {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin: 2rem 0;
-  }
-
-  .stat-item {
-    flex: 1;
-    min-width: 160px;
-    background: var(--card);
-    border-radius: 14px;
-    padding: 1.5rem;
-    border: 1px solid var(--border);
-  }
-
-  .stat-item .s-val {
-    font-family: var(--font-display);
-    font-size: 1.75rem;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1;
-    margin-bottom: 0.4rem;
-  }
-
-  .stat-item .s-val.accent { color: var(--accent); }
-  .stat-item .s-val.gold { color: var(--gold); }
-  .stat-item .s-val.muted { color: var(--muted); }
-
-  .stat-item .s-lbl {
-    font-size: 0.75rem;
-    color: var(--muted);
-    font-weight: 500;
-    line-height: 1.4;
-  }
-
-  /* ── PROGRESS BAR ── */
-  .prog-bar-wrap {
-    margin: 0.4rem 0;
-  }
-
-  .prog-bar {
-    height: 6px;
-    background: var(--card2);
-    border-radius: 3px;
-    overflow: hidden;
-  }
-
-  .prog-bar-fill {
-    height: 100%;
-    border-radius: 3px;
-    background: linear-gradient(90deg, var(--accent2), var(--accent));
-    transition: width 1s ease;
-  }
+  /* ── FADE IN ── */
+  .fade{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+  .fade.in{opacity:1;transform:none;}
 
   /* ── SCROLLBAR ── */
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--card2); border-radius: 2px; }
+  ::-webkit-scrollbar{width:5px;height:5px;}
+  ::-webkit-scrollbar-track{background:var(--ink);}
+  ::-webkit-scrollbar-thumb{background:var(--surface-3);border-radius:3px;}
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    .cards-3 { grid-template-columns: 1fr; }
-    .cards-2 { grid-template-columns: 1fr; }
-    .pillar { grid-template-columns: 1fr; }
-    .pillar-label { border-right: none; border-bottom: 1px solid var(--border); }
-    .nav-links { display: none; }
-    .roi-result { grid-template-columns: 1fr; }
-    .tools-grid { grid-template-columns: 1fr 1fr; }
-    section { padding: 6rem 1.25rem 4rem; }
+  @media(max-width:920px){
+    .hero-grid{grid-template-columns:1fr;gap:2.4rem;}
+    .roi-grid{grid-template-columns:1fr;}
+    .tl-grid{grid-template-columns:1fr;gap:2rem;}
+    .nav-links{display:none;}
+  }
+  @media(max-width:680px){
+    section{padding:5.5rem 1.2rem 4rem;}
+    .grid-3,.grid-2{grid-template-columns:1fr;}
+    .method{grid-template-columns:1fr;}
+    .mstep .arrow{display:none;}
+    .pillar{grid-template-columns:1fr;}
+    .roi-out{grid-template-columns:1fr;}
+    .compare-grid{grid-template-columns:1fr;gap:1.2rem;}
+    .skill-row{grid-template-columns:1fr;gap:.5rem;}
+    .tools{grid-template-columns:1fr;}
+    .hero-metrics{gap:1.5rem;}
+    .nav-cta{display:none;}
   }
 
-  /* ── ANIMATIONS ── */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;}
+    .fade{opacity:1;transform:none;}
+    .bar{transition:none;}
   }
-
-  .fade-in.visible {
-    opacity: 1;
-    transform: none;
-  }
-
-  .bar { height: 0; }
-  .bar.animated { }
 </style>
 </head>
 <body>
+<div id="progress"></div>
 
-<!-- NAV -->
+<!-- ══ SYSTEM BAR ══ -->
 <nav>
-  <div class="nav-brand">Biatic × Dani Montero</div>
+  <div class="nav-brand">
+    <span class="status-dot"></span>
+    <b>BIATIC</b><span class="sep">/</span>marketing<span class="sep">·</span>Daniel Montero
+  </div>
   <ul class="nav-links">
-    <li><a href="#hero">Inicio</a></li>
-    <li><a href="#paradox">La paradoja</a></li>
-    <li><a href="#oportunidad">Oportunidad</a></li>
-    <li><a href="#rol">Mi rol</a></li>
-    <li><a href="#herramientas">Herramientas</a></li>
-    <li><a href="#costes">Costes</a></li>
+    <li><a href="#hero">INICIO</a></li>
+    <li><a href="#contexto">CONTEXTO</a></li>
+    <li><a href="#paradoja">PARADOJA</a></li>
+    <li><a href="#oportunidad">OPORTUNIDAD</a></li>
+    <li><a href="#rol">ROL</a></li>
+    <li><a href="#stack">STACK</a></li>
+    <li><a href="#costes">COSTES</a></li>
     <li><a href="#roi">ROI</a></li>
-    <li><a href="#noventa">90 días</a></li>
-    <li><a href="#cierre">Por qué yo</a></li>
+    <li><a href="#plan">90D</a></li>
+    <li><a href="#cierre">CIERRE</a></li>
   </ul>
+  <a href="#cierre" class="nav-cta">› POR QUÉ YO</a>
 </nav>
 
-<!-- ══════════════════════ HERO ══════════════════════ -->
+<!-- ══ HERO ══ -->
 <section id="hero">
   <div class="container">
-    <div class="hero-label">Propuesta de incorporación — Marketing B2B</div>
-    <div class="eyebrow fade-in" style="margin-bottom:1rem;">El problema</div>
-    <h1 class="hero-title fade-in">
-      Biatic ayuda a otros<br>a crecer. ¿Quién<br>ayuda a <span>Biatic</span>?
-    </h1>
-    <p class="hero-sub fade-in">
-      Vuestra propuesta de valor es clara: sistemas data-driven para que el crecimiento sea predecible, no improvisado. Pero esa misma lógica no está aplicada a vuestra propia visibilidad de marca.
-    </p>
-    <p class="hero-sub fade-in" style="margin-top:-1.5rem;">
-      Sin marketing activo, el crecimiento depende de referencias y red directa. Es funcional, pero tiene techo. Y vosotros sabéis mejor que nadie lo que pasa cuando el pipeline no tiene sistema detrás.
-    </p>
-    <p class="hero-sub fade-in" style="margin-top:-1.5rem; color: var(--text); font-weight:500;">
-      Mi rol no es solo hacer contenido. Es construir el sistema de marketing que alimente vuestro proceso comercial con leads cualificados, maduración activa y materiales que cierren deals.
-    </p>
-    <div class="hero-meta fade-in">
-      <div class="hero-meta-item">
-        <div class="val muted">30–40</div>
-        <div class="lbl">Contactos SDR al día</div>
+    <div class="hero-grid">
+      <div>
+        <div class="hero-tag fade">› Propuesta de incorporación — Marketing B2B</div>
+        <h1 class="hero-title fade">
+          Biatic ayuda a otros<br>a crecer.<br><em>¿Quién ayuda a Biatic?</em>
+        </h1>
+        <p class="hero-sub fade">
+          Vuestra tesis es clara: diseñáis sistemas para que el crecimiento sea <strong>predecible, no improvisado</strong>. Pero esa misma lógica no está aplicada a vuestra propia visibilidad de marca.
+        </p>
+        <p class="hero-sub fade">
+          Sin marketing activo, el crecimiento depende de referencias y outbound en frío. Es funcional, pero tiene techo. Y vosotros sabéis mejor que nadie qué pasa cuando el pipeline no tiene un sistema detrás.
+        </p>
+        <p class="hero-sub lead fade">
+          No vengo solo a hacer contenido. Vengo a construir <b>el módulo de marketing</b> que alimente vuestro proceso comercial con leads cualificados, maduración activa y materiales que cierran deals.
+        </p>
+        <div class="hero-actions fade">
+          <a href="#contexto" class="btn btn-primary">› Iniciar diagnóstico</a>
+          <a href="#roi" class="btn btn-ghost">Ver el ROI</a>
+        </div>
       </div>
-      <div class="hero-meta-item">
-        <div class="val muted">1 de 10</div>
-        <div class="lbl">Reuniones → venta</div>
+
+      <div class="fade">
+        <div class="console">
+          <div class="console-bar">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <span class="ttl">biatic_growth_system · status</span>
+          </div>
+          <div class="console-body">
+            <div class="cline"><span class="k">Outbound (SDR)</span><span class="v">30–40/día <span class="pill ok">activo</span></span></div>
+            <div class="cline"><span class="k">CRM HubSpot</span><span class="v">~2.000 contactos <span class="pill warn">infrautilizado</span></span></div>
+            <div class="cline"><span class="k">Reunión → venta</span><span class="v">1 de 10 <span class="pill warn">10%</span></span></div>
+            <div class="cline"><span class="k">Ticket medio</span><span class="v">20.000 € <span class="pill ok">ok</span></span></div>
+            <div class="cline"><span class="k">Módulo inbound</span><span class="v">— <span class="pill off">no configurado</span></span></div>
+            <div class="cline"><span class="k">Maduración email</span><span class="v">— <span class="pill off">no configurado</span></span></div>
+          </div>
+        </div>
       </div>
-      <div class="hero-meta-item">
-        <div class="val muted">20.000€</div>
-        <div class="lbl">Ticket medio</div>
+    </div>
+
+    <div class="hero-metrics fade">
+      <div class="hm"><div class="v" data-count="35" data-suffix="">30–40</div><div class="l">Contactos SDR / día</div></div>
+      <div class="hm"><div class="v">1 / 10</div><div class="l">Reuniones → venta</div></div>
+      <div class="hm"><div class="v">20.000€</div><div class="l">Ticket medio</div></div>
+      <div class="hm"><div class="v coral">Inbound</div><div class="l">El canal que aún no existe</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTEXTO BIATIC ══ -->
+<section id="contexto">
+  <div class="container">
+    <div class="eyebrow fade"><span class="bar"></span><span class="idx">00</span> // Lo que ya sé de vosotros</div>
+    <h2 class="section-title fade">No vengo a improvisar.<br>Vengo <em>con los deberes hechos</em>.</h2>
+    <p class="section-desc fade">
+      Antes de hablar de mí, quiero demostrar que entiendo a Biatic. Sois una consultora <strong>RevOps</strong>: alineáis ventas, marketing, operaciones y atención al cliente bajo un mismo sistema de procesos, datos y métricas, con HubSpot, Odoo e IA como palancas. Esto es lo que he leído de vuestra propia web.
+    </p>
+
+    <div class="mlabel fade" style="margin-bottom:.9rem;">Empresas que ya confían en vosotros</div>
+    <div class="logos fade">
+      <span class="logo-chip">Mundiplan</span>
+      <span class="logo-chip">Apolo Energies</span>
+      <span class="logo-chip">Synergym</span>
+      <span class="logo-chip">Jaippy</span>
+      <span class="logo-chip">RC Deportivo La Coruña</span>
+      <span class="logo-chip">Teamergy</span>
+      <span class="logo-chip">Proex Drinks Group</span>
+      <span class="logo-chip">Grupo RG Iberia</span>
+    </div>
+
+    <div class="mlabel fade" style="margin-bottom:.9rem;">Vuestro método, en tres pasos</div>
+    <div class="method fade">
+      <div class="mstep">
+        <div class="n">01</div>
+        <h4>Analizamos</h4>
+        <p>Procesos de marketing, ventas y operaciones, tal y como funcionan hoy.</p>
+        <div class="arrow">→</div>
       </div>
-      <div class="hero-meta-item">
-        <div class="val gold">Inbound</div>
-        <div class="lbl">El canal que aún no existe</div>
+      <div class="mstep">
+        <div class="n">02</div>
+        <h4>Detectamos</h4>
+        <p>Cuellos de botella, tareas repetitivas y pérdida de información.</p>
+        <div class="arrow">→</div>
+      </div>
+      <div class="mstep">
+        <div class="n">03</div>
+        <h4>Aplicamos</h4>
+        <p>IA, HubSpot y Odoo de forma personalizada para escalar resultados.</p>
+      </div>
+    </div>
+
+    <div class="grid grid-3 fade">
+      <div class="cell">
+        <div class="cell-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <div class="cell-t">Ahorrar tiempo</div>
+        <div class="cell-x">Prometéis hasta <b>15 horas semanales</b> liberadas por equipo. Yo aplico esa misma mentalidad de automatización al marketing.</div>
+      </div>
+      <div class="cell">
+        <div class="cell-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg></div>
+        <div class="cell-t">Reducir costes</div>
+        <div class="cell-x">Habláis de una reducción del <b>30% en gastos GTM</b>. Un perfil in-house es exactamente eso aplicado a vuestra propia captación.</div>
+      </div>
+      <div class="cell">
+        <div class="cell-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 7-7"/><path d="M17 5h4v4"/></svg></div>
+        <div class="cell-t">Aumentar ingresos</div>
+        <div class="cell-x">Vuestra promesa estrella: <b>+127% de ROI</b>. Quiero replicar esa lógica de "revenue predecible" en vuestro propio marketing.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════ LA PARADOJA ══════════════════════ -->
-<section id="paradox">
+<!-- ══ PARADOJA ══ -->
+<section id="paradoja">
   <div class="container">
-    <div class="eyebrow">El punto de partida</div>
-    <h2 class="section-title fade-in">La paradoja que<br>hay que resolver.</h2>
-    <p class="section-desc fade-in">
-      Todo el peso del crecimiento recae hoy en el equipo comercial. Es sostenible hasta cierto punto. El inbound es lo que cambia la ecuación.
+    <div class="eyebrow fade"><span class="bar"></span><span class="idx">01</span> // El punto de partida</div>
+    <h2 class="section-title fade">La paradoja que<br>hay que <em>resolver</em>.</h2>
+    <p class="section-desc fade">
+      Todo el peso del crecimiento recae hoy en el equipo comercial. Es sostenible hasta cierto punto. <strong>El inbound es lo que cambia la ecuación.</strong>
     </p>
 
-    <div class="paradox-box fade-in">
+    <div class="paradox-box fade">
       <div class="paradox-quote">
         Biatic ayuda a sus clientes a que <em>"el crecimiento sea predecible, no improvisado"</em>. Pero su propio canal de captación sigue dependiendo al 100% de outbound frío.
       </div>
-      <p style="font-size:0.875rem; color: var(--muted);">Texto de su web. No es una crítica al equipo: es la oportunidad más clara que existe.</p>
+      <p class="paradox-note">Texto de vuestra propia web. No es una crítica al equipo: es la oportunidad más clara que existe.</p>
     </div>
 
-    <!-- SDR funnel block -->
-    <div class="fade-in" style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.75rem 2rem; margin-bottom:2rem;">
-      <div style="font-size:0.72rem; font-weight:600; color:var(--muted); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:1.25rem;">El proceso comercial actual · Puro outbound</div>
-      <div style="display:flex; align-items:flex-start; gap:0; flex-wrap:wrap; margin-bottom:1.25rem;">
-        <div style="flex:1; min-width:130px; padding:1rem 1.25rem; text-align:center;">
-          <div style="font-family:var(--font-display); font-size:0.82rem; font-weight:700; margin-bottom:0.3rem; color:var(--text);">SDR</div>
-          <div style="font-size:0.72rem; color:var(--muted); line-height:1.5;">30–40 contactos<br>al día. Objetivo:<br>1–2 reuniones.</div>
+    <div class="panel fade">
+      <div class="panel-h">El proceso comercial actual · Puro outbound</div>
+      <div class="flow">
+        <div class="node">
+          <div class="nt">SDR</div>
+          <div class="nx">30–40 contactos al día.<br>Objetivo: 1–2 reuniones.</div>
         </div>
-        <div style="padding:1rem 0.4rem; color:var(--muted); font-size:0.9rem; align-self:center;">→</div>
-        <div style="flex:1; min-width:130px; padding:1rem 1.25rem; text-align:center;">
-          <div style="font-family:var(--font-display); font-size:0.82rem; font-weight:700; margin-bottom:0.3rem; color:var(--text);">Key Account</div>
-          <div style="font-size:0.72rem; color:var(--muted); line-height:1.5;">Gestiona la<br>reunión con el<br>prospect.</div>
+        <div class="conn">→</div>
+        <div class="node">
+          <div class="nt">Key Account</div>
+          <div class="nx">Gestiona la reunión<br>con el prospect.</div>
         </div>
-        <div style="padding:1rem 0.4rem; color:var(--muted); font-size:0.9rem; align-self:center;">→</div>
-        <div style="flex:1; min-width:130px; padding:1rem 1.25rem; text-align:center;">
-          <div style="font-family:var(--font-display); font-size:0.82rem; font-weight:700; margin-bottom:0.3rem; color:var(--text);">Negocio</div>
-          <div style="font-size:0.72rem; color:var(--muted); line-height:1.5;">1 de cada 10<br>reuniones se<br>convierte en venta.</div>
+        <div class="conn">→</div>
+        <div class="node">
+          <div class="nt">Negocio</div>
+          <div class="nx">1 de cada 10 reuniones<br>se convierte en venta.</div>
         </div>
       </div>
-      <div style="background:var(--bg2); border-radius:10px; padding:1rem 1.25rem; font-size:0.82rem; color:var(--muted); line-height:1.65;">
-        <strong style="color:var(--text);">El problema central:</strong> el SDR contacta en frío a empresas que no saben quién es Biatic, no entienden aún qué es RevOps y no tienen motivo para coger el teléfono. El ratio de conversión sufre porque la marca no ha hecho trabajo previo. <strong style="color:var(--gold);">El inbound cambia esa ecuación.</strong>
+      <div class="panel-foot">
+        <strong>El problema central:</strong> el SDR contacta en frío a empresas que no saben quién es Biatic, no entienden aún qué es RevOps y no tienen motivo para coger el teléfono. El ratio sufre porque la marca no ha hecho trabajo previo. <span class="hi">El inbound cambia esa ecuación.</span>
       </div>
     </div>
 
-    <div class="cards cards-3 fade-in">
-      <div class="card">
-        <div class="card-icon">🔍</div>
-        <div class="card-title">Marca sin visibilidad propia</div>
-        <div class="card-text">Cuando el SDR llama, la empresa al otro lado no sabe quién es Biatic. Sin marca previa, cada llamada parte de cero. El inbound construye ese reconocimiento antes de que comercial entre en escena.</div>
+    <div class="grid grid-3 fade">
+      <div class="cell">
+        <div class="cell-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+        <div class="cell-t">Marca sin visibilidad propia</div>
+        <div class="cell-x">Cuando el SDR llama, la empresa al otro lado no sabe quién es Biatic. Sin marca previa, cada llamada parte de cero. El inbound construye ese reconocimiento antes de que comercial entre en escena.</div>
       </div>
-      <div class="card">
-        <div class="card-icon">📞</div>
-        <div class="card-title">Outbound frío como único canal</div>
-        <div class="card-text">30–40 contactos diarios para conseguir 1–2 reuniones, y aun así el objetivo no siempre se cumple. No es un problema de equipo: es un problema de ecosistema. Sin inbound, todo el peso recae en outbound.</div>
+      <div class="cell">
+        <div class="cell-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L20 13l2 5v3a2 2 0 0 1-2 2A16 16 0 0 1 4 6 2 2 0 0 1 5 4z"/></svg></div>
+        <div class="cell-t">Outbound frío como único canal</div>
+        <div class="cell-x">30–40 contactos diarios para 1–2 reuniones, y aun así el objetivo no siempre se cumple. No es un problema de equipo: es de ecosistema. Sin inbound, todo el peso recae en outbound.</div>
       </div>
-      <div class="card">
-        <div class="card-icon">🎯</div>
-        <div class="card-title">Leads que llegan sin contexto</div>
-        <div class="card-text">1 de cada 10 reuniones convierte en venta. Si los leads llegan habiendo consumido contenido de Biatic, conociendo el producto y con un problema ya identificado, esa ratio cambia. Eso es lo que construye el inbound.</div>
+      <div class="cell">
+        <div class="cell-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4"/></svg></div>
+        <div class="cell-t">Leads que llegan sin contexto</div>
+        <div class="cell-x">1 de cada 10 reuniones convierte. Si los leads llegan habiendo consumido contenido de Biatic, conociendo el producto y con un problema ya identificado, esa ratio cambia. Eso construye el inbound.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════ OPORTUNIDAD ══════════════════════ -->
+<!-- ══ OPORTUNIDAD ══ -->
 <section id="oportunidad">
   <div class="container">
-    <div class="eyebrow">La oportunidad en números</div>
-    <h2 class="section-title fade-in">Inbound no reemplaza<br>a outbound. Lo multiplica.</h2>
-    <p class="section-desc fade-in">
+    <div class="eyebrow fade"><span class="bar"></span><span class="idx">02</span> // La oportunidad en números</div>
+    <h2 class="section-title fade">Inbound no reemplaza<br>a outbound. <em>Lo multiplica.</em></h2>
+    <p class="section-desc fade">
       El equipo comercial seguirá haciendo su trabajo. Mi función es que lleguen más oportunidades por sí solas — empresas que ya nos conocen, ya confían y ya tienen un problema que resolver.
     </p>
 
-    <!-- Revenue Table -->
-    <div class="fade-in" style="overflow-x:auto; margin-bottom:2rem;">
-      <table class="rev-table">
+    <div class="tbl-wrap fade">
+      <table class="tbl">
         <thead>
-          <tr>
-            <th>Escenario</th>
-            <th>Canal</th>
-            <th>Reuniones/mes</th>
-            <th>Conversión reunión→venta</th>
-            <th>Deals/mes</th>
-            <th>Revenue anual est.</th>
-          </tr>
+          <tr><th>Escenario</th><th>Canal</th><th>Reuniones/mes</th><th>Conv. reunión→venta</th><th>Deals/mes</th><th>Revenue anual est.</th></tr>
         </thead>
         <tbody>
-          <tr class="current">
-            <td><span class="tag tag-muted">Hoy</span></td>
-            <td>Solo outbound</td>
-            <td>~20–40</td>
-            <td>1 de 10 (10%)</td>
-            <td>2–4</td>
-            <td class="revenue-big" style="color:var(--muted)">~600k€</td>
+          <tr>
+            <td><span class="tag m">Hoy</span></td>
+            <td class="sub">Solo outbound</td>
+            <td>~20–40</td><td>1 de 10 (10%)</td><td>2–4</td>
+            <td class="big" style="color:var(--muted)">~600k€</td>
           </tr>
           <tr>
-            <td><span class="tag tag-accent">Escenario 1</span></td>
-            <td>Outbound + inbound básico</td>
-            <td>~40–60</td>
-            <td>~15% (leads más calificados)</td>
-            <td>6–9</td>
-            <td class="revenue-big">~1,2M€</td>
+            <td><span class="tag b">Escenario 1</span></td>
+            <td class="sub">Outbound + inbound básico</td>
+            <td>~40–60</td><td>~15%</td><td>6–9</td>
+            <td class="big">~1,2M€</td>
           </tr>
-          <tr class="highlight">
-            <td><span class="tag tag-gold">Escenario 2</span></td>
-            <td>Outbound + inbound activo</td>
-            <td>~60–80</td>
-            <td>~20%</td>
-            <td>12–16</td>
-            <td class="revenue-big" style="color:var(--gold)">~2,4M€</td>
+          <tr class="hl">
+            <td><span class="tag c">Escenario 2</span></td>
+            <td class="sub">Outbound + inbound activo</td>
+            <td>~60–80</td><td>~20%</td><td>12–16</td>
+            <td class="big" style="color:var(--coral)">~2,4M€</td>
           </tr>
         </tbody>
       </table>
-      <p style="font-size:0.75rem; color:var(--muted); margin-top:0.75rem;">* Estimaciones orientativas basadas en ticket medio de 20.000€ y mejora progresiva del ratio de conversión reunión→venta gracias a leads más cualificados.</p>
     </div>
+    <p class="note fade" style="margin-bottom:2rem;">* Estimaciones orientativas basadas en ticket medio de 20.000€ y mejora progresiva del ratio de conversión reunión→venta gracias a leads más cualificados.</p>
 
-    <!-- Bar Chart -->
-    <div class="chart-wrap fade-in">
-      <div class="chart-title">Revenue anual estimado · Outbound solo vs. Outbound + Inbound</div>
-      <div class="bar-chart" id="barChart">
-        <div class="bar-group">
-          <div class="bar-val">~600k€</div>
-          <div class="bar bar current" data-height="20" style="height:0%"></div>
-          <div class="bar-lbl">Hoy<br><small style="color:var(--muted)">Solo outbound</small></div>
-        </div>
-        <div class="bar-group">
-          <div class="bar-val">~1,2M€</div>
-          <div class="bar bar s1" data-height="40" style="height:0%"></div>
-          <div class="bar-lbl">Escenario 1<br><small style="color:var(--muted)">Inbound básico</small></div>
-        </div>
-        <div class="bar-group">
-          <div class="bar-val" style="color:var(--gold)">~2,4M€</div>
-          <div class="bar bar s3" data-height="80" style="height:0%"></div>
-          <div class="bar-lbl">Escenario 2<br><small style="color:var(--muted)">Inbound activo</small></div>
-        </div>
+    <div class="chart fade">
+      <div class="chart-h">Revenue anual estimado · Outbound solo vs. Outbound + Inbound</div>
+      <div class="bars" id="barChart">
+        <div class="bargrp"><div class="bval" style="color:var(--muted)">~600k€</div><div class="bar b0" data-h="22"></div><div class="blbl"><b>Hoy</b>Solo outbound</div></div>
+        <div class="bargrp"><div class="bval" style="color:var(--brand-bright)">~1,2M€</div><div class="bar b1" data-h="48"></div><div class="blbl"><b>Escenario 1</b>Inbound básico</div></div>
+        <div class="bargrp"><div class="bval" style="color:var(--coral)">~2,4M€</div><div class="bar b2" data-h="92"></div><div class="blbl"><b>Escenario 2</b>Inbound activo</div></div>
       </div>
-      <p style="font-size:0.75rem; color:var(--muted); margin-top:1rem;">* Proyección orientativa. El inbound no reemplaza al equipo comercial: reduce la fricción de entrada y mejora el ratio de cierre.</p>
+      <p class="note" style="margin-top:1.2rem;">* Proyección orientativa. El inbound no reemplaza al equipo comercial: reduce la fricción de entrada y mejora el ratio de cierre.</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════ ROL ══════════════════════ -->
+<!-- ══ ROL ══ -->
 <section id="rol">
   <div class="container">
-    <div class="eyebrow">Qué haría exactamente</div>
-    <h2 class="section-title fade-in">Cuatro pilares.<br>Un solo perfil.</h2>
-    <p class="section-desc fade-in">
+    <div class="eyebrow fade"><span class="bar"></span><span class="idx">03</span> // Qué haría exactamente</div>
+    <h2 class="section-title fade">Cuatro pilares.<br><em>Un solo perfil.</em></h2>
+    <p class="section-desc fade">
       El objetivo central: que Biatic empiece a resonar. Que las empresas nos conozcan antes de que comercial llame. Que cuando llegue la reunión, ya haya contexto, confianza y problema identificado.
     </p>
 
-    <!-- Funnel visual -->
-    <div class="fade-in" style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.75rem 2rem; margin-bottom:2rem;">
-      <div style="font-size:0.72rem; font-weight:600; color:var(--muted); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:1.25rem;">El flujo que quiero construir</div>
-      <div style="display:flex; align-items:center; gap:0; flex-wrap:wrap;">
-        <div style="flex:1; min-width:140px; background:rgba(17,49,241,0.08); border:1px solid rgba(17,49,241,0.2); border-radius:12px; padding:1rem 1.25rem; text-align:center;">
-          <div style="font-size:1.3rem; margin-bottom:0.4rem;">📣</div>
-          <div style="font-family:var(--font-display); font-size:0.85rem; font-weight:700; margin-bottom:0.25rem;">Marca visible</div>
-          <div style="font-size:0.72rem; color:var(--muted); line-height:1.4;">Contenido, SEO, LinkedIn.<br>Que Biatic suene en el sector.</div>
+    <div class="panel fade">
+      <div class="panel-h">El flujo que quiero construir</div>
+      <div class="flow">
+        <div class="node b">
+          <div class="nt">Marca visible</div>
+          <div class="nx">Contenido, SEO, LinkedIn.<br>Que Biatic suene en el sector.</div>
         </div>
-        <div style="padding:0 0.5rem; color:var(--accent); font-size:1.2rem; font-weight:700;">→</div>
-        <div style="flex:1; min-width:140px; background:rgba(17,49,241,0.05); border:1px solid var(--border); border-radius:12px; padding:1rem 1.25rem; text-align:center;">
-          <div style="font-size:1.3rem; margin-bottom:0.4rem;">🎯</div>
-          <div style="font-family:var(--font-display); font-size:0.85rem; font-weight:700; margin-bottom:0.25rem;">Lead cualificado</div>
-          <div style="font-size:0.72rem; color:var(--muted); line-height:1.4;">Empresa que nos conoce,<br>problema identificado.</div>
+        <div class="conn">→</div>
+        <div class="node b">
+          <div class="nt">Lead cualificado</div>
+          <div class="nx">Empresa que nos conoce,<br>problema identificado.</div>
         </div>
-        <div style="padding:0 0.5rem; color:var(--accent); font-size:1.2rem; font-weight:700;">→</div>
-        <div style="flex:1; min-width:140px; background:rgba(227,125,58,0.08); border:1px solid rgba(227,125,58,0.25); border-radius:12px; padding:1rem 1.25rem; text-align:center;">
-          <div style="font-size:1.3rem; margin-bottom:0.4rem;">🤝</div>
-          <div style="font-family:var(--font-display); font-size:0.85rem; font-weight:700; margin-bottom:0.25rem;">Comercial lo cierra</div>
-          <div style="font-size:0.72rem; color:var(--muted); line-height:1.4;">Reunión con contexto.<br>Más ratio de conversión.</div>
+        <div class="conn">→</div>
+        <div class="node c">
+          <div class="nt">Comercial lo cierra</div>
+          <div class="nx">Reunión con contexto.<br>Más ratio de conversión.</div>
         </div>
       </div>
-      <div style="margin-top:1rem; font-size:0.78rem; color:var(--muted); border-top:1px solid var(--border); padding-top:0.85rem;">
-        <strong style="color:var(--text);">Mi trabajo termina cuando comercial tiene la reunión.</strong> No estoy en ventas: genero las condiciones para que la venta sea más fácil. Marca conocida + lead educado = menos fricción en el cierre.
+      <div class="panel-foot">
+        <strong>Mi trabajo termina cuando comercial tiene la reunión.</strong> No estoy en ventas: genero las condiciones para que la venta sea más fácil. Marca conocida + lead educado = menos fricción en el cierre.
       </div>
     </div>
 
-    <div class="fade-in" style="display:flex; flex-direction:column; gap:1px; background:var(--border); border-radius:16px; overflow:hidden;">
-
+    <div class="fade" style="border-radius:16px;overflow:hidden;">
       <div class="pillar">
-        <div class="pillar-label">
-          <div class="num">01</div>
-          <div class="name">Hacer resonar el nombre de Biatic</div>
-        </div>
-        <div class="pillar-content">
-          <p>Que cuando alguien en una empresa B2B busque "RevOps", "HubSpot consultant" o "optimización de procesos comerciales", Biatic aparezca. Que el nombre suene antes de que comercial llame.</p>
+        <div class="pillar-l"><div class="pn">PILAR_01</div><div class="pname">Hacer resonar el nombre de Biatic</div></div>
+        <div class="pillar-r">
+          <p>Que cuando alguien en una empresa B2B busque "RevOps", "HubSpot consultant" u "optimización de procesos comerciales", Biatic aparezca. Que el nombre suene antes de que comercial llame.</p>
           <ul>
             <li>Content marketing orientado a SEO (RevOps, HubSpot, automatización B2B)</li>
             <li>LinkedIn orgánico: artículos, newsletters, contenido del equipo fundador</li>
@@ -1108,13 +737,9 @@
           </ul>
         </div>
       </div>
-
       <div class="pillar">
-        <div class="pillar-label">
-          <div class="num">02</div>
-          <div class="name">Activación del CRM y email maduración</div>
-        </div>
-        <div class="pillar-content">
+        <div class="pillar-l"><div class="pn">PILAR_02</div><div class="pname">Activación del CRM y email maduración</div></div>
+        <div class="pillar-r">
           <p>Los 2.000 contactos del CRM son el activo más infrautilizado. Activarlos con secuencias inteligentes es la acción de mayor impacto inmediato.</p>
           <ul>
             <li>Segmentación del CRM por etapa, industria y comportamiento</li>
@@ -1124,13 +749,9 @@
           </ul>
         </div>
       </div>
-
       <div class="pillar">
-        <div class="pillar-label">
-          <div class="num">03</div>
-          <div class="name">Handoff a comercial: leads con contexto</div>
-        </div>
-        <div class="pillar-content">
+        <div class="pillar-l"><div class="pn">PILAR_03</div><div class="pname">Handoff a comercial: leads con contexto</div></div>
+        <div class="pillar-r">
           <p>Cuando una empresa llega a comercial gracias a una campaña, ya sabe quién es Biatic, ya tiene un problema en mente y ya tiene confianza trabajada. Eso cambia el ratio de 1/10 reuniones.</p>
           <ul>
             <li>Notificaciones automáticas a comercial cuando un lead supera el umbral de scoring</li>
@@ -1140,13 +761,9 @@
           </ul>
         </div>
       </div>
-
       <div class="pillar">
-        <div class="pillar-label">
-          <div class="num">04</div>
-          <div class="name">Automatización y análisis</div>
-        </div>
-        <div class="pillar-content">
+        <div class="pillar-l"><div class="pn">PILAR_04</div><div class="pname">Automatización y análisis</div></div>
+        <div class="pillar-r">
           <p>No solo ejecutar campañas: medir, iterar y automatizar para que el sistema funcione sin depender de trabajo manual continuo.</p>
           <ul>
             <li>Dashboards de marketing conectados a HubSpot (leads, MQLs, conversión)</li>
@@ -1156,561 +773,274 @@
           </ul>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════ HERRAMIENTAS ══════════════════════ -->
-<section id="herramientas">
+<!-- ══ STACK ══ -->
+<section id="stack">
   <div class="container">
-    <div class="eyebrow">Stack técnico</div>
-    <h2 class="section-title fade-in">Las herramientas.<br>Aplicadas al contexto de Biatic.</h2>
-    <p class="section-desc fade-in">
-      No es un listado de buzzwords. Es lo que usaría, cómo y para qué.
-    </p>
+    <div class="eyebrow fade"><span class="bar"></span><span class="idx">04</span> // Stack técnico</div>
+    <h2 class="section-title fade">Las herramientas.<br><em>Aplicadas al contexto de Biatic.</em></h2>
+    <p class="section-desc fade">No es un listado de buzzwords. Es lo que usaría, cómo y para qué.</p>
 
-    <div class="tools-grid fade-in">
-      <div class="tool-card">
-        <div class="tool-icon">🟠</div>
-        <div class="tool-name">HubSpot</div>
-        <div class="tool-use">Workflows de email maduración, lead scoring, landing pages y reporting de pipeline. Biatic ya lo usa: aporto la capa de marketing que cierra el ciclo.</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-icon">💼</div>
-        <div class="tool-name">LinkedIn Orgánico + Ads</div>
-        <div class="tool-use">Posicionamiento de marca en el ecosistema RevOps B2B. Contenido para directivos, operaciones y founders de empresas medianas.</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-icon">📧</div>
-        <div class="tool-name">HubSpot Email Marketing</div>
-        <div class="tool-use">Campañas de maduración a los contactos del CRM, secuencias automatizadas, segmentación avanzada y A/B testing. Todo integrado en la herramienta que Biatic ya tiene: sin coste adicional ni duplicidad.</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-icon">🎨</div>
-        <div class="tool-name">Adobe Creative Suite</div>
-        <div class="tool-use">Materiales comerciales, casos de éxito visuales, one-pagers, social assets y vídeos cortos para LinkedIn o web. Calidad de agencia, in-house.</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-icon">⚡</div>
-        <div class="tool-name">Power Automate / Make</div>
-        <div class="tool-use">Automatizaciones cross-tool: notificaciones de leads, sincronización CRM → herramientas externas, reportes automáticos al equipo comercial.</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-icon">🤖</div>
-        <div class="tool-name">IA generativa (Claude)</div>
-        <div class="tool-use">Producción de contenido escalable, análisis de datos cualitativos, ideación de campañas y revisión de copy. Multiplicador de velocidad.</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-icon">📊</div>
-        <div class="tool-name">Analytics + Search Console</div>
-        <div class="tool-use">Auditoría SEO, seguimiento de tráfico orgánico, identificación de keywords de intención comercial para el nicho RevOps.</div>
-      </div>
-      <div class="tool-card">
-        <div class="tool-icon">🎬</div>
-        <div class="tool-name">Premiere Pro / DaVinci Resolve</div>
-        <div class="tool-use">Producción de vídeo: testimoniales de clientes, reels para LinkedIn, presentaciones en formato vídeo. Ambas herramientas son aptas; la elección depende del flujo de trabajo y las necesidades de postproducción.</div>
-      </div>
+    <div class="tools fade">
+      <div class="tool"><div class="tool-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M12 7v4m0 0l-5.5 5M12 11l5.5 5"/></svg></div><div class="tool-n">HubSpot</div><div class="tool-x">Workflows de email maduración, lead scoring, landing pages y reporting de pipeline. Biatic ya lo usa: aporto la capa de marketing que cierra el ciclo.</div></div>
+      <div class="tool"><div class="tool-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4"/></svg></div><div class="tool-n">LinkedIn Orgánico + Ads</div><div class="tool-x">Posicionamiento de marca en el ecosistema RevOps B2B. Contenido para directivos, operaciones y founders de empresas medianas.</div></div>
+      <div class="tool"><div class="tool-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div><div class="tool-n">HubSpot Email Marketing</div><div class="tool-x">Campañas de maduración a los contactos del CRM, secuencias automatizadas, segmentación avanzada y A/B testing. Integrado en la herramienta que Biatic ya tiene: sin coste adicional.</div></div>
+      <div class="tool"><div class="tool-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7-4-4-7 7v4h4z"/><path d="M14 7l3 3M5 19h.01"/></svg></div><div class="tool-n">Adobe Creative Suite</div><div class="tool-x">Materiales comerciales, casos de éxito visuales, one-pagers, social assets y vídeos cortos para LinkedIn o web. Calidad de agencia, in-house.</div></div>
+      <div class="tool"><div class="tool-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3L5 13h5l-1 8 8-10h-5l1-8z"/></svg></div><div class="tool-n">Power Automate / Make</div><div class="tool-x">Automatizaciones cross-tool: notificaciones de leads, sincronización CRM → herramientas externas, reportes automáticos al equipo comercial.</div></div>
+      <div class="tool"><div class="tool-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3z"/><path d="M18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9L18 15z"/></svg></div><div class="tool-n">Claude · Plan Max</div><div class="tool-x">Mi motor de IA del día a día. Plan Max para uso intensivo: producción de contenido a escala, análisis cualitativo de métricas, ideación de campañas y revisión de copy. La misma palanca de IA que vendéis, aplicada a marketing.</div></div>
+      <div class="tool"><div class="tool-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="M8 16v-4M12 16V8M16 16v-6"/></svg></div><div class="tool-n">Analytics + Search Console</div><div class="tool-x">Auditoría SEO, seguimiento de tráfico orgánico, identificación de keywords de intención comercial para el nicho RevOps.</div></div>
+      <div class="tool"><div class="tool-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3z"/></svg></div><div class="tool-n">Premiere Pro / DaVinci Resolve</div><div class="tool-x">Producción de vídeo: testimoniales de clientes, reels para LinkedIn, presentaciones en formato vídeo. La elección depende del flujo y la postproducción.</div></div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════ COSTES ══════════════════════ -->
+<!-- ══ COSTES ══ -->
 <section id="costes">
   <div class="container">
-    <div class="eyebrow">Inversión real</div>
-    <h2 class="section-title fade-in">Qué cuesta cada herramienta<br>y cada acción.</h2>
-    <p class="section-desc fade-in">
-      Desglose honesto: coste de las herramientas que usaría, tiempo estimado por acción y lo que costaría externalizar cada una a una agencia o freelance en España.
-    </p>
+    <div class="eyebrow fade"><span class="bar"></span><span class="idx">05</span> // Inversión real</div>
+    <h2 class="section-title fade">Qué cuesta cada herramienta<br>y <em>cada acción</em>.</h2>
+    <p class="section-desc fade">Desglose honesto: coste de las herramientas que usaría, tiempo estimado por acción y lo que costaría externalizar cada una a una agencia o freelance en España.</p>
 
-    <!-- BLOQUE 1: HERRAMIENTAS -->
-    <div class="fade-in" style="margin-bottom:2.5rem;">
-      <div style="font-size:0.72rem; font-weight:600; color:var(--muted); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:1rem;">Herramientas · Coste mensual estimado</div>
-      <div style="overflow-x:auto;">
-        <table class="rev-table" style="min-width:640px;">
-          <thead>
-            <tr>
-              <th>Herramienta</th>
-              <th>Uso</th>
-              <th>Coste mensual</th>
-              <th>Nota</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="font-weight:600;">HubSpot Marketing Hub</td>
-              <td style="color:var(--muted); font-size:0.82rem;">Email, workflows, lead scoring, landing pages, secuencias de maduración</td>
-              <td><span class="tag tag-green">Ya disponible</span></td>
-              <td style="color:var(--muted); font-size:0.8rem;">Biatic ya lo usa. Cubre el 100% de las necesidades de email marketing. Coste incremental: 0€</td>
-            </tr>
-            <tr>
-              <td style="font-weight:600;">LinkedIn Ads</td>
-              <td style="color:var(--muted); font-size:0.82rem;">Campañas de captación B2B segmentadas</td>
-              <td><span class="tag tag-gold">500–1.500€/mes</span></td>
-              <td style="color:var(--muted); font-size:0.8rem;">Inversión en medios (no fee de gestión). CPC medio 5–12€. Mínimo recomendado para B2B: 500€/mes</td>
-            </tr>
-            <tr>
-              <td style="font-weight:600;">Adobe Creative Suite</td>
-              <td style="color:var(--muted); font-size:0.82rem;">Diseño de materiales, vídeo, social assets</td>
-              <td><span class="tag tag-accent">~60€/mes</span></td>
-              <td style="color:var(--muted); font-size:0.8rem;">Plan completo Adobe CC. Licencia personal; puede ya estar disponible</td>
-            </tr>
-            <tr>
-              <td style="font-weight:600;">Power Automate / Make</td>
-              <td style="color:var(--muted); font-size:0.82rem;">Automatizaciones entre herramientas</td>
-              <td><span class="tag tag-green">Desde 0€</span></td>
-              <td style="color:var(--muted); font-size:0.8rem;">Make tiene plan gratuito (1.000 operaciones/mes). Power Automate incluido en licencias Microsoft 365</td>
-            </tr>
-            <tr>
-              <td style="font-weight:600;">Google Analytics + Search Console</td>
-              <td style="color:var(--muted); font-size:0.82rem;">Seguimiento de tráfico, SEO, conversiones</td>
-              <td><span class="tag tag-green">0€</span></td>
-              <td style="color:var(--muted); font-size:0.8rem;">Herramientas gratuitas de Google</td>
-            </tr>
-            <tr>
-              <td style="font-weight:600;">Premiere Pro / DaVinci Resolve</td>
-              <td style="color:var(--muted); font-size:0.82rem;">Edición de vídeo para casos de éxito y LinkedIn</td>
-              <td><span class="tag tag-green">Desde 0€</span></td>
-              <td style="color:var(--muted); font-size:0.8rem;">DaVinci Resolve gratuito. Premiere Pro incluido en Adobe CC si se contrata</td>
-            </tr>
-            <tr style="background:rgba(17,49,241,0.04);">
-              <td style="font-weight:700; color:var(--text);">Total herramientas</td>
-              <td style="color:var(--muted); font-size:0.82rem;">Stack completo operativo</td>
-              <td><span class="tag tag-accent" style="font-size:0.8rem; font-weight:700;">~560–1.560€/mes</span></td>
-              <td style="color:var(--muted); font-size:0.8rem;">Según si se activan LinkedIn Ads. HubSpot, Analytics, DaVinci y Make: 0€ incremental</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="mlabel fade" style="margin-bottom:1rem;">Herramientas · Coste mensual estimado</div>
+    <div class="tbl-wrap fade">
+      <table class="tbl" style="min-width:640px;">
+        <thead><tr><th>Herramienta</th><th>Uso</th><th>Coste mensual</th><th>Nota</th></tr></thead>
+        <tbody>
+          <tr><td style="font-weight:600;">HubSpot Marketing Hub</td><td class="sub">Email, workflows, lead scoring, landing pages, secuencias</td><td><span class="tag g">Ya disponible</span></td><td class="sub">Biatic ya lo usa. Cubre el 100% del email marketing. Coste incremental: 0€</td></tr>
+          <tr><td style="font-weight:600;">LinkedIn Ads</td><td class="sub">Campañas de captación B2B segmentadas</td><td><span class="tag c">500–1.500€/mes</span></td><td class="sub">Inversión en medios (no fee). CPC medio 5–12€. Mínimo recomendado B2B: 500€/mes</td></tr>
+          <tr><td style="font-weight:600;">Adobe Creative Suite</td><td class="sub">Diseño de materiales, vídeo, social assets</td><td><span class="tag b">~60€/mes</span></td><td class="sub">Plan completo Adobe CC. Licencia personal; puede ya estar disponible</td></tr>
+          <tr><td style="font-weight:600;">Claude · Plan Max</td><td class="sub">Producción de contenido, análisis y automatización de copy con IA</td><td><span class="tag b">~100€/mes</span></td><td class="sub">Tier Max 5x (100$/mes) para uso intensivo. Existe Max 20x (~200$) si se necesita más capacidad</td></tr>
+          <tr><td style="font-weight:600;">Power Automate / Make</td><td class="sub">Automatizaciones entre herramientas</td><td><span class="tag g">Desde 0€</span></td><td class="sub">Planes gratuitos cubren el arranque</td></tr>
+          <tr><td style="font-weight:600;">Analytics + Search Console</td><td class="sub">SEO, tráfico, keywords de intención</td><td><span class="tag g">0€</span></td><td class="sub">Herramientas gratuitas de Google</td></tr>
+          <tr><td style="font-weight:600;">Premiere Pro / DaVinci Resolve</td><td class="sub">Edición de vídeo para casos de éxito y LinkedIn</td><td><span class="tag g">Desde 0€</span></td><td class="sub">DaVinci Resolve gratuito. Premiere incluido en Adobe CC</td></tr>
+          <tr class="total"><td style="color:var(--text);">Total herramientas</td><td class="sub">Stack completo operativo</td><td><span class="tag b" style="font-size:.7rem;">~660–1.660€/mes</span></td><td class="sub">Incluye Claude Max (~100€) y Adobe (~60€). Según si se activan LinkedIn Ads. HubSpot, Analytics, DaVinci y Make: 0€ incremental</td></tr>
+        </tbody>
+      </table>
     </div>
 
-    <!-- BLOQUE 2: ACCIONES -->
-    <div class="fade-in">
-      <div style="font-size:0.72rem; font-weight:600; color:var(--muted); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:1rem;">Acciones · Tiempo estimado + coste de externalización en España</div>
-      <div style="overflow-x:auto;">
-        <table class="rev-table" style="min-width:720px;">
-          <thead>
-            <tr>
-              <th>Acción</th>
-              <th>Frecuencia</th>
-              <th>Tiempo estimado</th>
-              <th>Coste externo (referencia)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="font-weight:600;">Content marketing + SEO<br><span style="font-weight:400; color:var(--muted); font-size:0.78rem;">Artículos, guías, optimización web</span></td>
-              <td style="color:var(--muted); font-size:0.82rem;">2–3 piezas/mes</td>
-              <td><span class="tag tag-muted">6–10h/mes</span></td>
-              <td style="color:var(--muted); font-size:0.8rem;">600–1.500€/mes (agencia SEO B2B España)</td>
-            </tr>
-            <tr>
-              <td style="font-weight:600;">LinkedIn orgánico<br><span style="font-weight:400; color:var(--muted); font-size:0.78rem;">Posts empresa + thought leadership equipo</span></td>
-              <td style="color:var(--muted); font-size:0.82rem;">3–4 posts/semana</td>
-              <td><span class="tag tag-muted">5–8h/mes</span></td>
-              <td style="color:var(--muted); font-size:0.8rem;">800–2.000€/mes (agencia social media B2B)</td>
-            </tr>
-            <tr>
-              <td style="font-weight:600;">Gestión LinkedIn Ads<br><span style="font-weight:400; color:var(--muted); font-size:0.78rem;">Creación, optimización y reporting de campañas</span></td>
-              <td style="color:var(--muted); font-size:0.82rem;">Continuo</td>
-              <td><span class="tag tag-muted">4–6h/mes</span></td>
-              <td style="color:var(--muted); font-size:0.8rem;">500–1.200€/mes de fee de gestión (sin incluir inversión en medios)</td>
-            </tr>
-            <tr>
-              <td style="font-weight:600;">Secuencias de maduración por email<br><span style="font-weight:400; color:var(--muted); font-size:0.78rem;">Segmentación CRM, copy, configuración</span></td>
-              <td style="color:var(--muted); font-size:0.82rem;">Setup inicial + mantenimiento</td>
-              <td><span class="tag tag-muted">8–12h setup · 2–3h/mes</span></td>
-              <td style="color:var(--muted); font-size:0.8rem;">200–400€/mes (freelance email marketing)</td>
-            </tr>
-            <tr>
-              <td style="font-weight:600;">Materiales comerciales<br><span style="font-weight:400; color:var(--muted); font-size:0.78rem;">One-pagers, decks, casos de éxito</span></td>
-              <td style="color:var(--muted); font-size:0.82rem;">1–2 piezas/mes</td>
-              <td><span class="tag tag-muted">4–8h/pieza</span></td>
-              <td style="color:var(--muted); font-size:0.8rem;">300–800€/pieza (diseñador freelance B2B)</td>
-            </tr>
-            <tr>
-              <td style="font-weight:600;">Producción de vídeo<br><span style="font-weight:400; color:var(--muted); font-size:0.78rem;">Casos de éxito, reels LinkedIn</span></td>
-              <td style="color:var(--muted); font-size:0.82rem;">1 vídeo/mes</td>
-              <td><span class="tag tag-muted">6–10h/vídeo</span></td>
-              <td style="color:var(--muted); font-size:0.8rem;">500–1.500€/vídeo (producción + edición externa)</td>
-            </tr>
-            <tr>
-              <td style="font-weight:600;">Automatizaciones y reporting<br><span style="font-weight:400; color:var(--muted); font-size:0.78rem;">Flujos, alertas, dashboards de métricas</span></td>
-              <td style="color:var(--muted); font-size:0.82rem;">Setup + revisión mensual</td>
-              <td><span class="tag tag-muted">6–10h setup · 2h/mes</span></td>
-              <td style="color:var(--muted); font-size:0.8rem;">400–900€/mes (consultor RevOps/automatización)</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="mlabel fade" style="margin:2.2rem 0 1rem;">Acciones · Tiempo estimado + coste de externalización en España</div>
+    <div class="tbl-wrap fade">
+      <table class="tbl" style="min-width:720px;">
+        <thead><tr><th>Acción</th><th>Frecuencia</th><th>Tiempo estimado</th><th>Coste externo (referencia)</th></tr></thead>
+        <tbody>
+          <tr><td style="font-weight:600;">Content marketing + SEO<br><span class="sub">Artículos, guías, optimización web</span></td><td class="sub">2–3 piezas/mes</td><td><span class="tag m">6–10h/mes</span></td><td class="sub">600–1.500€/mes (agencia SEO B2B)</td></tr>
+          <tr><td style="font-weight:600;">LinkedIn orgánico<br><span class="sub">Posts empresa + thought leadership</span></td><td class="sub">3–4 posts/semana</td><td><span class="tag m">5–8h/mes</span></td><td class="sub">800–2.000€/mes (agencia social B2B)</td></tr>
+          <tr><td style="font-weight:600;">Gestión LinkedIn Ads<br><span class="sub">Creación, optimización y reporting</span></td><td class="sub">Continuo</td><td><span class="tag m">4–6h/mes</span></td><td class="sub">500–1.200€/mes de fee (sin medios)</td></tr>
+          <tr><td style="font-weight:600;">Secuencias de maduración<br><span class="sub">Segmentación CRM, copy, configuración</span></td><td class="sub">Setup + mantenimiento</td><td><span class="tag m">8–12h setup · 2–3h/mes</span></td><td class="sub">200–400€/mes (freelance email)</td></tr>
+          <tr><td style="font-weight:600;">Materiales comerciales<br><span class="sub">One-pagers, decks, casos de éxito</span></td><td class="sub">1–2 piezas/mes</td><td><span class="tag m">4–8h/pieza</span></td><td class="sub">300–800€/pieza (diseñador B2B)</td></tr>
+          <tr><td style="font-weight:600;">Producción de vídeo<br><span class="sub">Casos de éxito, reels LinkedIn</span></td><td class="sub">1 vídeo/mes</td><td><span class="tag m">6–10h/vídeo</span></td><td class="sub">500–1.500€/vídeo (producción externa)</td></tr>
+          <tr><td style="font-weight:600;">Automatizaciones y reporting<br><span class="sub">Flujos, alertas, dashboards</span></td><td class="sub">Setup + revisión mensual</td><td><span class="tag m">6–10h setup · 2h/mes</span></td><td class="sub">400–900€/mes (consultor RevOps)</td></tr>
+        </tbody>
+      </table>
     </div>
 
-    <!-- Resumen -->
-    <div class="fade-in" style="margin-top:2rem; background:rgba(17,49,241,0.05); border:1px solid rgba(17,49,241,0.18); border-radius:16px; padding:1.75rem 2rem;">
-        <div style="font-size:0.72rem; font-weight:600; color:var(--muted); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:1rem;">Comparativa: in-house vs externalizar</div>
-        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.5rem;">
-          <div>
-            <div style="font-size:0.72rem; font-weight:600; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:0.5rem;">Coste si se externalizara todo</div>
-            <div style="font-family:var(--font-display); font-size:1.6rem; font-weight:800; letter-spacing:-0.02em; color:var(--text);">3.300–8.300€<span style="font-size:0.9rem; font-weight:500; color:var(--muted);">/mes</span></div>
-            <div style="font-size:0.75rem; color:var(--muted); margin-top:0.3rem;">Solo fees agencia/freelance. Sin herramientas ni inversión en medios. <strong style="color:var(--text);">~40.000–100.000€/año.</strong></div>
-          </div>
-          <div>
-            <div style="font-size:0.72rem; font-weight:600; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:0.5rem;">Coste total in-house</div>
-            <div style="font-family:var(--font-display); font-size:1.6rem; font-weight:800; letter-spacing:-0.02em; color:var(--accent);">~32.000€<span style="font-size:0.9rem; font-weight:500; color:var(--muted);">/año</span></div>
-            <div style="font-size:0.75rem; color:var(--muted); margin-top:0.3rem;">Coste empresa total estimado, incluyendo herramientas.</div>
-          </div>
-          <div>
-            <div style="font-size:0.72rem; font-weight:600; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:0.5rem;">Ahorro mínimo estimado</div>
-            <div style="font-family:var(--font-display); font-size:1.6rem; font-weight:800; letter-spacing:-0.02em; color:var(--green);">+8.000–68.000€<span style="font-size:0.9rem; font-weight:500; color:var(--muted);">/año</span></div>
-            <div style="font-size:0.75rem; color:var(--muted); margin-top:0.3rem;">Frente a externalizar los mismos servicios. Con conocimiento interno acumulado incluido.</div>
-          </div>
+    <div class="compare fade">
+      <div class="mlabel" style="margin-bottom:1.2rem;">Comparativa: in-house vs externalizar</div>
+      <div class="compare-grid">
+        <div>
+          <div class="cl">Coste si se externalizara todo</div>
+          <div class="cv">3.300–8.300€<span class="u">/mes</span></div>
+          <div class="cx">Solo fees agencia/freelance. Sin herramientas ni medios. <strong style="color:var(--text)">~40.000–100.000€/año.</strong></div>
         </div>
-      <div style="margin-top:1.25rem; padding-top:1.25rem; border-top:1px solid var(--border); font-size:0.8rem; color:var(--muted); line-height:1.65;">
-        * Rangos orientativos basados en precios de mercado España 2026. El coste externo no incluye la curva de aprendizaje ni el conocimiento del negocio que un perfil interno acumula con el tiempo.
+        <div>
+          <div class="cl">Coste total in-house</div>
+          <div class="cv" style="color:var(--brand-bright)">~32.000€<span class="u">/año</span></div>
+          <div class="cx">Coste empresa total estimado, incluyendo herramientas.</div>
+        </div>
+        <div>
+          <div class="cl">Ahorro mínimo estimado</div>
+          <div class="cv" style="color:var(--green)">+8.000–68.000€<span class="u">/año</span></div>
+          <div class="cx">Frente a externalizar lo mismo. Con conocimiento interno acumulado incluido.</div>
+        </div>
       </div>
+      <p class="note" style="margin-top:1.3rem;padding-top:1.3rem;border-top:1px solid var(--brand-line);">* Rangos orientativos basados en precios de mercado España 2026. El coste externo no incluye la curva de aprendizaje ni el conocimiento del negocio que un perfil interno acumula con el tiempo.</p>
     </div>
-
   </div>
 </section>
 
-<!-- ══════════════════════ ROI ══════════════════════ -->
+<!-- ══ ROI ══ -->
 <section id="roi">
   <div class="container">
-    <div class="eyebrow">El argumento financiero</div>
-    <h2 class="section-title fade-in">El ROI de contratarme<br>es inmediato.</h2>
-    <p class="section-desc fade-in">
-      El coste empresa total estimado ronda los 32.000€ anuales, herramientas incluidas. Con HubSpot ya disponible, el stack apenas añade coste incremental. Y una mejora mínima en conversión lo recupera sobradamente.
-    </p>
+    <div class="eyebrow fade"><span class="bar"></span><span class="idx">06</span> // El argumento financiero</div>
+    <h2 class="section-title fade">El ROI de contratarme<br><em>es inmediato.</em></h2>
+    <p class="section-desc fade">El coste empresa total estimado ronda los 32.000€ anuales, herramientas incluidas. Con HubSpot ya disponible, el stack apenas añade coste incremental. Y una mejora mínima en conversión lo recupera sobradamente.</p>
 
-    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;" class="fade-in">
-
-      <div class="roi-widget">
-        <div style="font-family: var(--font-display); font-weight: 700; font-size: 1rem; margin-bottom:0.5rem;">Calculadora de impacto</div>
-        <div style="font-size:0.8rem; color:var(--muted); margin-bottom:1.5rem;">Ajusta la mejora de conversión estimada y ve el revenue incremental en tiempo real.</div>
-
-        <div class="slider-wrap">
-          <div class="slider-label">
-            <span>Mejora de conversión estimada</span>
-            <strong id="sliderVal">+0,5%</strong>
-          </div>
-          <input type="range" id="convSlider" min="1" max="10" value="1" step="1">
-          <div style="display:flex; justify-content:space-between; font-size:0.68rem; color:var(--muted); margin-top:0.4rem;">
-            <span>+0,5%</span>
-            <span>+5%</span>
-          </div>
+    <div class="roi-grid fade">
+      <div class="roi-card">
+        <h4>Calculadora de impacto</h4>
+        <div class="desc">Ajusta la mejora de conversión estimada y ve el revenue incremental en tiempo real.</div>
+        <div class="slider-label"><span>Mejora de conversión estimada</span><strong id="sliderVal">+0,5%</strong></div>
+        <input type="range" id="convSlider" min="1" max="10" value="1" step="1">
+        <div class="range-ends"><span>+0,5%</span><span>+5%</span></div>
+        <div class="roi-out">
+          <div class="roi-m"><div class="l">Revenue incremental</div><div class="v g" id="revenueVal">+200.000€</div></div>
+          <div class="roi-m"><div class="l">Nuevos deals</div><div class="v b" id="dealsVal">10 deals</div></div>
+          <div class="roi-m"><div class="l">Coste empresa total est.</div><div class="v m">~32.000€/año</div></div>
+          <div class="roi-m"><div class="l">ROI estimado</div><div class="v g" id="roiVal">614%</div></div>
         </div>
-
-        <div class="roi-result">
-          <div class="roi-metric">
-            <div class="lbl">Revenue incremental</div>
-            <div class="val green" id="revenueVal">+200.000€</div>
-          </div>
-          <div class="roi-metric">
-            <div class="lbl">Nuevos deals</div>
-            <div class="val accent" id="dealsVal">10 deals</div>
-          </div>
-          <div class="roi-metric">
-            <div class="lbl">Coste empresa total estimado</div>
-            <div class="val" style="color:var(--muted)">~32.000€/año</div>
-          </div>
-          <div class="roi-metric">
-            <div class="lbl">ROI estimado</div>
-            <div class="val green" id="roiVal">614%</div>
-          </div>
-        </div>
-
-        <div class="roi-note">
-          Base de cálculo: 2.000 contactos × mejora de tasa × ticket de 20.000€. El ROI se calcula sobre ~32.000€ de coste empresa total estimado, herramientas incluidas. <strong>Con una mejora mínima, la inversión se recupera en pocas semanas.</strong>
-        </div>
+        <div class="roi-foot">Base de cálculo: 2.000 contactos × mejora de tasa × ticket de 20.000€. El ROI se calcula sobre ~32.000€ de coste empresa total estimado, herramientas incluidas. <strong>Con una mejora mínima, la inversión se recupera en pocas semanas.</strong></div>
       </div>
 
-      <div style="display:flex; flex-direction:column; gap:1rem;">
-        <div class="stat-item">
-          <div class="s-val gold">×6,25</div>
-          <div class="s-lbl">Revenue incremental vs coste empresa total (~32.000€) con solo +0,5% de mejora en conversión</div>
-        </div>
-        <div class="stat-item">
-          <div class="s-val accent">3–6 meses</div>
-          <div class="s-lbl">Horizonte realista para ver primeros resultados medibles en pipeline y conversión</div>
-        </div>
-        <div class="stat-item" style="border-color: rgba(17,49,241,0.2); background: rgba(17,49,241,0.05);">
-          <div style="font-family:var(--font-display); font-size:0.9rem; font-weight:700; margin-bottom:0.5rem; color:var(--text);">Sin marketing propio, Biatic compite con una mano atada.</div>
-          <div style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Sus competidores con marketing activo capturan los leads que Biatic nunca va a ver. El coste de no contratar también existe.</div>
-        </div>
+      <div class="roi-side">
+        <div class="stat"><div class="sv c">×6,25</div><div class="sl">Revenue incremental vs coste empresa total (~32.000€) con solo +0,5% de mejora en conversión.</div></div>
+        <div class="stat"><div class="sv b">3–6 meses</div><div class="sl">Horizonte realista para ver primeros resultados medibles en pipeline y conversión.</div></div>
+        <div class="stat accent"><div class="st">Sin marketing propio, Biatic compite con una mano atada.</div><div class="sl">Vuestros competidores con marketing activo capturan los leads que Biatic nunca va a ver. El coste de no contratar también existe.</div></div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════ 90 DÍAS ══════════════════════ -->
-<section id="noventa">
+<!-- ══ PLAN 90 DÍAS ══ -->
+<section id="plan">
   <div class="container">
-    <div class="eyebrow">Plan de incorporación</div>
-    <h2 class="section-title fade-in">Los primeros 90 días.<br>Sin improvisar.</h2>
-    <p class="section-desc fade-in">
-      Cada semana con un objetivo claro. Empezar con datos, no con suposiciones.
-    </p>
+    <div class="eyebrow fade"><span class="bar"></span><span class="idx">07</span> // Plan de incorporación</div>
+    <h2 class="section-title fade">Los primeros 90 días.<br><em>Sin improvisar.</em></h2>
+    <p class="section-desc fade">Cada fase con un objetivo claro. Empezar con datos, no con suposiciones — exactamente como Biatic trabaja con sus clientes.</p>
 
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:3rem;" class="fade-in">
-
+    <div class="tl-grid fade">
       <div class="timeline">
-        <div class="timeline-phase">
-          <div class="phase-label">Días 1–30 · Diagnóstico</div>
-          <div class="phase-title">Entender antes de ejecutar.</div>
-          <div class="phase-items">
-            <div class="phase-item">Auditoría completa de presencia digital: web, SEO, LinkedIn, contenido existente</div>
-            <div class="phase-item">Análisis del CRM: segmentación de los 2.000 contactos por etapa, industria, temperatura</div>
-            <div class="phase-item">Revisión de materiales comerciales actuales</div>
-            <div class="phase-item">Entrevistas internas con el equipo de ventas para entender el proceso y los pain points</div>
-            <div class="phase-item">Mapa de competidores y su estrategia de contenido</div>
-            <div class="phase-item">Definición de ICP (Ideal Customer Profile) formal y prioridades de canal</div>
-          </div>
+        <div class="phase">
+          <div class="phase-l">Días 1–30 · Diagnóstico</div>
+          <div class="phase-t">Entender antes de ejecutar.</div>
+          <div class="phase-i">Auditoría completa de presencia digital: web, SEO, LinkedIn, contenido existente</div>
+          <div class="phase-i">Análisis del CRM: segmentación de los 2.000 contactos por etapa, industria, temperatura</div>
+          <div class="phase-i">Revisión de materiales comerciales actuales</div>
+          <div class="phase-i">Entrevistas internas con ventas para entender el proceso y los pain points</div>
+          <div class="phase-i">Mapa de competidores y su estrategia de contenido</div>
+          <div class="phase-i">Definición de ICP formal y prioridades de canal</div>
         </div>
-
-        <div class="timeline-phase">
-          <div class="phase-label">Días 31–60 · Activación</div>
-          <div class="phase-title">Primeras acciones con impacto.</div>
-          <div class="phase-items">
-            <div class="phase-item">Primera secuencia de maduración activa en HubSpot (segmento prioritario del CRM)</div>
-            <div class="phase-item">Calendario editorial LinkedIn: 3 publicaciones/semana para empresa y equipo</div>
-            <div class="phase-item">One-pager de servicio principal rediseñado</div>
-            <div class="phase-item">Landing page de captación para el servicio de mayor prioridad</div>
-            <div class="phase-item">Dashboard de métricas de marketing conectado al CRM</div>
-            <div class="phase-item">Primer caso de éxito documentado y publicado</div>
-          </div>
+        <div class="phase">
+          <div class="phase-l">Días 31–60 · Activación</div>
+          <div class="phase-t">Primeras acciones con impacto.</div>
+          <div class="phase-i">Primera secuencia de maduración activa en HubSpot (segmento prioritario)</div>
+          <div class="phase-i">Calendario editorial LinkedIn: 3 publicaciones/semana para empresa y equipo</div>
+          <div class="phase-i">One-pager de servicio principal rediseñado</div>
+          <div class="phase-i">Landing page de captación para el servicio de mayor prioridad</div>
+          <div class="phase-i">Dashboard de métricas de marketing conectado al CRM</div>
+          <div class="phase-i">Primer caso de éxito documentado y publicado</div>
         </div>
-
-        <div class="timeline-phase">
-          <div class="phase-label">Días 61–90 · Optimización</div>
-          <div class="phase-title">Medir, ajustar, escalar.</div>
-          <div class="phase-items">
-            <div class="phase-item">Primera revisión de métricas: opens, clicks, MQLs generados, conversación en pipeline</div>
-            <div class="phase-item">A/B test en subject lines y CTAs de emails</div>
-            <div class="phase-item">Segunda secuencia de maduración (segmento frío/reactivación)</div>
-            <div class="phase-item">Evaluación de canal con mejor CAC y ajuste de presupuesto</div>
-            <div class="phase-item">Propuesta de roadmap para el Q2 con objetivos medibles</div>
-          </div>
+        <div class="phase">
+          <div class="phase-l">Días 61–90 · Optimización</div>
+          <div class="phase-t">Medir, ajustar, escalar.</div>
+          <div class="phase-i">Primera revisión de métricas: opens, clicks, MQLs, conversación en pipeline</div>
+          <div class="phase-i">A/B test en subject lines y CTAs de emails</div>
+          <div class="phase-i">Segunda secuencia de maduración (segmento frío/reactivación)</div>
+          <div class="phase-i">Evaluación de canal con mejor CAC y ajuste de presupuesto</div>
+          <div class="phase-i">Propuesta de roadmap para el Q2 con objetivos medibles</div>
         </div>
       </div>
 
-      <div style="display:flex; flex-direction:column; gap:1rem;">
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.75rem;">
-          <div style="font-family:var(--font-display); font-weight:700; font-size:0.9rem; margin-bottom:1.25rem; color:var(--muted); letter-spacing:0.03em; text-transform:uppercase;">Entregas al final de 90 días</div>
-          <div style="display:flex; flex-direction:column; gap:0.9rem;">
-            <div>
-              <div style="display:flex; justify-content:space-between; margin-bottom:0.3rem; font-size:0.82rem;">
-                <span>Presencia digital auditada y activa</span>
-                <span style="color:var(--accent); font-weight:600; font-size:0.72rem;">✓</span>
-              </div>
-              <div class="prog-bar"><div class="prog-bar-fill" style="width:100%"></div></div>
-            </div>
-            <div>
-              <div style="display:flex; justify-content:space-between; margin-bottom:0.3rem; font-size:0.82rem;">
-                <span>CRM segmentado y maduración activo</span>
-                <span style="color:var(--accent); font-weight:600; font-size:0.72rem;">✓</span>
-              </div>
-              <div class="prog-bar"><div class="prog-bar-fill" style="width:100%"></div></div>
-            </div>
-            <div>
-              <div style="display:flex; justify-content:space-between; margin-bottom:0.3rem; font-size:0.82rem;">
-                <span>Materiales comerciales actualizados</span>
-                <span style="color:var(--accent); font-weight:600; font-size:0.72rem;">✓</span>
-              </div>
-              <div class="prog-bar"><div class="prog-bar-fill" style="width:100%"></div></div>
-            </div>
-            <div>
-              <div style="display:flex; justify-content:space-between; margin-bottom:0.3rem; font-size:0.82rem;">
-                <span>Dashboard de marketing operativo</span>
-                <span style="color:var(--accent); font-weight:600; font-size:0.72rem;">✓</span>
-              </div>
-              <div class="prog-bar"><div class="prog-bar-fill" style="width:100%"></div></div>
-            </div>
-            <div>
-              <div style="display:flex; justify-content:space-between; margin-bottom:0.3rem; font-size:0.82rem;">
-                <span>Primeras métricas de conversión</span>
-                <span style="color:var(--gold); font-weight:600; font-size:0.72rem;">En proceso</span>
-              </div>
-              <div class="prog-bar"><div class="prog-bar-fill" style="width:65%"></div></div>
-            </div>
-            <div>
-              <div style="display:flex; justify-content:space-between; margin-bottom:0.3rem; font-size:0.82rem;">
-                <span>Roadmap Q2 definido</span>
-                <span style="color:var(--gold); font-weight:600; font-size:0.72rem;">En proceso</span>
-              </div>
-              <div class="prog-bar"><div class="prog-bar-fill" style="width:60%"></div></div>
-            </div>
-          </div>
+      <div>
+        <div class="deliver">
+          <div class="deliver-h">Entregas al final de 90 días</div>
+          <div class="drow"><div class="dt"><span>Presencia digital auditada y activa</span><span class="ds ok">100%</span></div><div class="pbar"><div class="pfill" data-w="100"></div></div></div>
+          <div class="drow"><div class="dt"><span>CRM segmentado y maduración activo</span><span class="ds ok">100%</span></div><div class="pbar"><div class="pfill" data-w="100"></div></div></div>
+          <div class="drow"><div class="dt"><span>Materiales comerciales actualizados</span><span class="ds ok">100%</span></div><div class="pbar"><div class="pfill" data-w="100"></div></div></div>
+          <div class="drow"><div class="dt"><span>Dashboard de marketing operativo</span><span class="ds ok">100%</span></div><div class="pbar"><div class="pfill" data-w="100"></div></div></div>
+          <div class="drow"><div class="dt"><span>Primeras métricas de conversión</span><span class="ds prog">En proceso</span></div><div class="pbar"><div class="pfill" data-w="65"></div></div></div>
+          <div class="drow" style="margin-bottom:0;"><div class="dt"><span>Roadmap Q2 definido</span><span class="ds prog">En proceso</span></div><div class="pbar"><div class="pfill" data-w="60"></div></div></div>
         </div>
-
-        <div style="background: rgba(17,49,241,0.06); border:1px solid rgba(17,49,241,0.2); border-radius:14px; padding:1.5rem;">
-          <div style="font-size:0.78rem; font-weight:600; color:var(--accent); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:0.75rem;">Principio de trabajo</div>
-          <div style="font-family:var(--font-display); font-size:1rem; font-weight:600; line-height:1.5; color:var(--text);">"Medir antes de ejecutar. Ejecutar con datos. Escalar lo que funciona."</div>
-          <div style="font-size:0.78rem; color:var(--muted); margin-top:0.75rem;">El mismo lenguaje que usa Biatic con sus clientes. Es el que usaría dentro.</div>
+        <div class="principle">
+          <div class="pl">Principio de trabajo</div>
+          <div class="pq">"Medir antes de ejecutar. Ejecutar con datos. Escalar lo que funciona."</div>
+          <div class="px">El mismo lenguaje que usa Biatic con sus clientes. Es el que usaría dentro.</div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════ CIERRE ══════════════════════ -->
+<!-- ══ CIERRE ══ -->
 <section id="cierre">
   <div class="container">
-    <div class="closing-box fade-in">
-      <div class="eyebrow" style="justify-content:center;">Por qué yo</div>
-      <h2 class="closing-title">
-        El perfil que Biatic<br>necesita <span>ya existe</span>.
-      </h2>
-      <p class="closing-desc">
-        No hace falta construirlo desde cero ni formarlo durante meses. La combinación de diseño, marketing B2B, automatización y mentalidad data-driven que Biatic necesita para activar su marketing ya está lista para empezar.
-      </p>
+    <div class="closing fade">
+      <div class="eyebrow" style="justify-content:center;"><span class="bar"></span><span class="idx">08</span> // Por qué yo</div>
+      <h2 class="closing-title">El perfil que Biatic<br>necesita <em>ya existe.</em></h2>
+      <p class="closing-desc">No hace falta construirlo desde cero ni formarlo durante meses. La combinación de diseño, marketing B2B, automatización y mentalidad data-driven que Biatic necesita para activar su marketing ya está lista para empezar.</p>
 
-      <div class="closing-tags">
-        <div class="ctag"><div class="dot"></div> Marketing B2B con criterio</div>
-        <div class="ctag"><div class="dot"></div> Diseño que vende</div>
-        <div class="ctag"><div class="dot"></div> Automatización sin fricciones</div>
-        <div class="ctag"><div class="dot"></div> Mentalidad data-driven</div>
-        <div class="ctag"><div class="dot"></div> Stack HubSpot compatible</div>
-        <div class="ctag"><div class="dot"></div> ES / EN</div>
-        <div class="ctag"><div class="dot"></div> IA aplicada al contenido</div>
+      <div class="ctags">
+        <div class="ctag"><div class="d"></div> Marketing B2B con criterio</div>
+        <div class="ctag"><div class="d"></div> Diseño que vende</div>
+        <div class="ctag"><div class="d"></div> Automatización sin fricciones</div>
+        <div class="ctag"><div class="d"></div> Mentalidad data-driven</div>
+        <div class="ctag"><div class="d"></div> Stack HubSpot compatible</div>
+        <div class="ctag"><div class="d"></div> ES / EN</div>
+        <div class="ctag"><div class="d"></div> IA aplicada al contenido</div>
       </div>
 
-      <!-- Skills visual -->
-      <div style="background:var(--card); border:1px solid var(--border); border-radius:20px; padding:2rem; margin-bottom:2rem; text-align:left;">
-        <div style="font-family:var(--font-display); font-weight:700; font-size:0.85rem; color:var(--muted); letter-spacing:0.05em; text-transform:uppercase; margin-bottom:1.5rem;">Daniel Montero Díaz · Perfil de competencias</div>
-        <div style="display:flex; flex-direction:column; gap:1px; background:var(--border); border-radius:12px; overflow:hidden;">
-
-          <div style="background:var(--card); padding:1.1rem 1.25rem; display:grid; grid-template-columns:200px 1fr; gap:1.25rem; align-items:start;">
-            <div style="font-family:var(--font-display); font-size:0.82rem; font-weight:700; color:var(--text);">Email marketing<br><span style="color:var(--accent); font-weight:500; font-size:0.72rem;">HubSpot · Experiencia previa en Brevo</span></div>
-            <div style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Diseño y ejecución de campañas segmentadas para los contactos del CRM de Biatic. Secuencias de maduración, tests A/B de asunto y CTA, y reporting mensual de apertura y conversión.</div>
-          </div>
-
-          <div style="background:var(--card); padding:1.1rem 1.25rem; display:grid; grid-template-columns:200px 1fr; gap:1.25rem; align-items:start;">
-            <div style="font-family:var(--font-display); font-size:0.82rem; font-weight:700; color:var(--text);">Diseño gráfico<br><span style="color:var(--accent); font-weight:500; font-size:0.72rem;">Adobe Suite · Especialización activa</span></div>
-            <div style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Materiales comerciales (one-pagers, decks, casos de éxito), activos para LinkedIn y piezas de campaña. Identidad visual coherente para que Biatic comunique con la misma calidad que implementa.</div>
-          </div>
-
-          <div style="background:var(--card); padding:1.1rem 1.25rem; display:grid; grid-template-columns:200px 1fr; gap:1.25rem; align-items:start;">
-            <div style="font-family:var(--font-display); font-size:0.82rem; font-weight:700; color:var(--text);">Producción audiovisual<br><span style="color:var(--accent); font-weight:500; font-size:0.72rem;">Premiere Pro · DaVinci Resolve (alternativas)</span></div>
-            <div style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Vídeos de casos de éxito, testimoniales de clientes y reels para LinkedIn. Diferenciador real en B2B: la mayoría de competidores no produce vídeo propio.</div>
-          </div>
-
-          <div style="background:var(--card); padding:1.1rem 1.25rem; display:grid; grid-template-columns:200px 1fr; gap:1.25rem; align-items:start;">
-            <div style="font-family:var(--font-display); font-size:0.82rem; font-weight:700; color:var(--text);">Automatización<br><span style="color:var(--accent); font-weight:500; font-size:0.72rem;">Power Automate · Make</span></div>
-            <div style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Flujos entre HubSpot y herramientas externas, alertas automáticas al equipo comercial cuando un lead supera el umbral de scoring, y reportes periódicos sin trabajo manual.</div>
-          </div>
-
-          <div style="background:var(--card); padding:1.1rem 1.25rem; display:grid; grid-template-columns:200px 1fr; gap:1.25rem; align-items:start;">
-            <div style="font-family:var(--font-display); font-size:0.82rem; font-weight:700; color:var(--text);">Campañas B2B<br><span style="color:var(--accent); font-weight:500; font-size:0.72rem;">LinkedIn · Analytics · SEO</span></div>
-            <div style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Gestión de campañas orientadas a generar leads cualificados para el proceso comercial de Biatic: desde la segmentación de audiencia hasta el análisis de resultados y optimización de canal.</div>
-          </div>
-
-          <div style="background:var(--card); padding:1.1rem 1.25rem; display:grid; grid-template-columns:200px 1fr; gap:1.25rem; align-items:start;">
-            <div style="font-family:var(--font-display); font-size:0.82rem; font-weight:700; color:var(--text);">IA aplicada<br><span style="color:var(--accent); font-weight:500; font-size:0.72rem;">Producción · Análisis · Máster en curso</span></div>
-            <div style="font-size:0.8rem; color:var(--muted); line-height:1.6;">Generación y revisión de contenido, análisis cualitativo de métricas y aceleración de producción. Formación activa en diseño gráfico con IA aplicada (LABASAD).</div>
-          </div>
-
-        </div>
+      <div class="skills" style="text-align:left;">
+        <div class="skills-h">Daniel Montero Díaz · Perfil de competencias</div>
+        <div class="skill-row"><div class="sk-n">Email marketing<span class="sk-tool">HubSpot · experiencia previa en Brevo</span></div><div class="sk-x">Diseño y ejecución de campañas segmentadas para los contactos del CRM de Biatic. Secuencias de maduración, tests A/B de asunto y CTA, y reporting mensual de apertura y conversión.</div></div>
+        <div class="skill-row"><div class="sk-n">Diseño gráfico<span class="sk-tool">Adobe Suite · especialización activa</span></div><div class="sk-x">Materiales comerciales (one-pagers, decks, casos de éxito), activos para LinkedIn y piezas de campaña. Identidad visual coherente para que Biatic comunique con la misma calidad que implementa.</div></div>
+        <div class="skill-row"><div class="sk-n">Producción audiovisual<span class="sk-tool">Premiere Pro · DaVinci Resolve</span></div><div class="sk-x">Vídeos de casos de éxito, testimoniales de clientes y reels para LinkedIn. Diferenciador real en B2B: la mayoría de competidores no produce vídeo propio.</div></div>
+        <div class="skill-row"><div class="sk-n">Automatización<span class="sk-tool">Power Automate · Make</span></div><div class="sk-x">Flujos entre HubSpot y herramientas externas, alertas automáticas al equipo comercial cuando un lead supera el umbral de scoring, y reportes periódicos sin trabajo manual.</div></div>
+        <div class="skill-row"><div class="sk-n">Campañas B2B<span class="sk-tool">LinkedIn · Analytics · SEO</span></div><div class="sk-x">Gestión de campañas orientadas a generar leads cualificados para el proceso comercial de Biatic: desde la segmentación de audiencia hasta el análisis de resultados y optimización de canal.</div></div>
+        <div class="skill-row"><div class="sk-n">IA aplicada<span class="sk-tool">Producción · análisis · máster en curso</span></div><div class="sk-x">Generación y revisión de contenido, análisis cualitativo de métricas y aceleración de producción. Formación activa en diseño gráfico con IA aplicada (LABASAD).</div></div>
       </div>
 
-      <!-- Cierre híbrido -->
-      <div style="background: rgba(17,49,241,0.05); border:1px solid rgba(17,49,241,0.18); border-radius:20px; padding:2rem; margin-bottom:2.5rem; text-align:left;">
-        <div style="font-family:var(--font-display); font-size:1.15rem; font-weight:800; letter-spacing:-0.02em; line-height:1.3; margin-bottom:1rem; color:var(--text);">Híbrido por diseño, no por accidente.</div>
-        <p style="font-size:0.875rem; color:var(--muted); line-height:1.75; margin-bottom:0.85rem;">La mayoría de perfiles de marketing son o muy creativos o muy técnicos. Yo trabajo en la intersección: diseño + datos + automatización. Exactamente lo que necesita una empresa que vende sistemas, no servicios.</p>
-        <p style="font-size:0.875rem; color:var(--muted); line-height:1.75;">Tengo experiencia real en entorno B2B (agencia de producción de eventos): he gestionado campañas de email para ferias sectoriales, producido materiales de venta, analizado métricas de Brevo y coordinado on-site. No vengo a aprender desde cero — vengo a aplicar desde el primer mes.</p>
+      <div class="hybrid">
+        <h4>Híbrido por diseño, no por accidente.</h4>
+        <p>La mayoría de perfiles de marketing son o muy creativos o muy técnicos. Yo trabajo en la intersección: <b>diseño + datos + automatización</b>. Exactamente lo que necesita una empresa que vende sistemas, no servicios.</p>
+        <p>Tengo experiencia real en entorno B2B (agencia de producción de eventos): he gestionado campañas de email para ferias sectoriales, producido materiales de venta, analizado métricas de Brevo y coordinado on-site. <b>No vengo a aprender desde cero — vengo a aplicar desde el primer mes.</b></p>
       </div>
 
-      <div class="contact-block">
-        <div style="width:48px; height:48px; border-radius:12px; background:var(--accent); display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:800; font-size:1.2rem; color:#fff; margin-bottom:0.5rem;">DM</div>
-        <div class="contact-name">Daniel Montero Díaz</div>
-        <div class="contact-role">Marketing & Communication · Diseño gráfico</div>
+      <div class="contact">
+        <div class="avatar">DM</div>
+        <div class="cn">Daniel Montero Díaz</div>
+        <div class="cr">marketing & communication · diseño gráfico</div>
       </div>
-
     </div>
   </div>
 </section>
 
 <script>
-// ── Navigation active state ──
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('.nav-links a');
+// progress bar
+const prog=document.getElementById('progress');
+const onScroll=()=>{const h=document.documentElement;const sc=(h.scrollTop)/(h.scrollHeight-h.clientHeight);prog.style.width=(sc*100)+'%';};
+document.addEventListener('scroll',onScroll,{passive:true});onScroll();
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const id = entry.target.id;
-      navLinks.forEach(l => {
-        l.classList.toggle('active', l.getAttribute('href') === '#' + id);
-      });
-    }
-  });
-}, { threshold: 0.4 });
+// nav active state
+const navLinks=document.querySelectorAll('.nav-links a');
+const navObs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){const id=e.target.id;navLinks.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+id));}});},{threshold:.35});
+document.querySelectorAll('section').forEach(s=>navObs.observe(s));
 
-sections.forEach(s => observer.observe(s));
+// fade in
+const fadeObs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');fadeObs.unobserve(e.target);}});},{threshold:.12});
+document.querySelectorAll('.fade').forEach(el=>fadeObs.observe(el));
 
-// ── Fade in on scroll ──
-const fades = document.querySelectorAll('.fade-in');
-const fadeObs = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => {
-        entry.target.classList.add('visible');
-      }, 100);
-    }
-  });
-}, { threshold: 0.1 });
+// bar chart
+const bars=document.querySelectorAll('.bar[data-h]');
+const chart=document.getElementById('barChart');
+if(chart){const cObs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){bars.forEach((b,i)=>setTimeout(()=>b.style.height=b.dataset.h+'%',i*160));cObs.disconnect();}});},{threshold:.3});cObs.observe(chart);}
 
-fades.forEach(el => fadeObs.observe(el));
+// progress fills
+const fills=document.querySelectorAll('.pfill[data-w]');
+const fObs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){fills.forEach((f,i)=>setTimeout(()=>f.style.width=f.dataset.w+'%',i*120));fObs.disconnect();}});},{threshold:.3});
+if(fills.length)fObs.observe(fills[0].closest('.deliver'));
 
-// ── Bar chart animation ──
-const bars = document.querySelectorAll('.bar[data-height]');
-const chartObs = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      bars.forEach((bar, i) => {
-        setTimeout(() => {
-          bar.style.height = bar.dataset.height + '%';
-        }, i * 120);
-      });
-      chartObs.disconnect();
-    }
-  });
-}, { threshold: 0.3 });
-
-const chart = document.getElementById('barChart');
-if (chart) chartObs.observe(chart);
-
-// ── ROI Calculator ──
-const slider = document.getElementById('convSlider');
-const sliderVal = document.getElementById('sliderVal');
-const revenueVal = document.getElementById('revenueVal');
-const dealsVal = document.getElementById('dealsVal');
-const roiVal = document.getElementById('roiVal');
-
-const convSteps = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
-const salaryCost = 32000;
-const contacts = 2000;
-const ticket = 20000;
-const baseConv = 0.005;
-
-function updateROI() {
-  const idx = parseInt(slider.value) - 1;
-  const improvement = convSteps[idx];
-  const newDeals = Math.round(contacts * (improvement / 100));
-  const newRevenue = newDeals * ticket;
-  const roi = Math.round(((newRevenue - salaryCost) / salaryCost) * 100);
-
-  sliderVal.textContent = '+' + improvement.toString().replace('.', ',') + '%';
-  revenueVal.textContent = '+' + newRevenue.toLocaleString('es-ES') + '€';
-  dealsVal.textContent = newDeals + ' deals';
-  roiVal.textContent = roi.toLocaleString('es-ES') + '%';
+// ROI calculator
+const slider=document.getElementById('convSlider');
+const sliderVal=document.getElementById('sliderVal');
+const revenueVal=document.getElementById('revenueVal');
+const dealsVal=document.getElementById('dealsVal');
+const roiVal=document.getElementById('roiVal');
+const convSteps=[0.5,1,1.5,2,2.5,3,3.5,4,4.5,5];
+const salaryCost=32000,contacts=2000,ticket=20000;
+function updateROI(){
+  const idx=parseInt(slider.value)-1;
+  const improvement=convSteps[idx];
+  const newDeals=Math.round(contacts*(improvement/100));
+  const newRevenue=newDeals*ticket;
+  const roi=Math.round(((newRevenue-salaryCost)/salaryCost)*100);
+  sliderVal.textContent='+'+improvement.toString().replace('.',',')+'%';
+  revenueVal.textContent='+'+newRevenue.toLocaleString('es-ES')+'€';
+  dealsVal.textContent=newDeals+' deals';
+  roiVal.textContent=roi.toLocaleString('es-ES')+'%';
 }
-
-slider.addEventListener('input', updateROI);
-updateROI();
+slider.addEventListener('input',updateROI);updateROI();
 </script>
-
 </body>
 </html>
